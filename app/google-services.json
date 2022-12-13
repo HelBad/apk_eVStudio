@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "918619916726",
+    "project_id": "rentalev-2d4e4",
+    "storage_bucket": "rentalev-2d4e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918619916726:android:7e7f46d2df3f0826409917",
+        "android_client_info": {
+          "package_name": "com.example.rentalev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "918619916726-s4hpb5ihusjdrcchtajvoncb7qjf0o7u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhSuO5WO5v0NAQzdpDULylQZp05SRIbb8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "918619916726-s4hpb5ihusjdrcchtajvoncb7qjf0o7u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
