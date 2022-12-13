@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.example.rentalev.model.Identitas
 import com.example.rentalev.model.Pengguna
 import com.example.rentalev.pengguna.ActivityUtama
 import com.google.firebase.database.DataSnapshot
@@ -26,15 +27,13 @@ class ActivityLogin : AppCompatActivity() {
 
         SP = getSharedPreferences("Pengguna", Context.MODE_PRIVATE)
         alertDialog = AlertDialog.Builder(this)
-
         btnLogin.setOnClickListener {
             if(validate()) {
                 login()
               }
         }
         textRegister.setOnClickListener {
-            val intent = Intent(this, ActivityRegister::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, ActivityRegister::class.java))
         }
     }
 
@@ -71,18 +70,39 @@ class ActivityLogin : AppCompatActivity() {
                                 editor.putString("level", us.level)
                                 editor.apply()
 
-//                                if(us.level == "Pengguna") {
-                                btnLogin.isClickable = false
-                                val intent = Intent(this@ActivityLogin, ActivityUtama::class.java)
-                                startActivity(intent)
-                                finish()
-//                                } else if(us.level == "Admin") {
-//                                    btnLogin.isClickable = false
-//                                    val intent = Intent(this@ActivityLogin,
-//                                        com.example.projectskripsi.admin.ActivityUtama::class.java)
-//                                    startActivity(intent)
-//                                    finish()
-//                                }
+                                FirebaseDatabase.getInstance().getReference("identitas")
+                                    .orderByChild("id_pengguna").equalTo(us.id_pengguna)
+                                    .addListenerForSingleValueEvent(object : ValueEventListener {
+                                        override fun onCancelled(p0: DatabaseError) {}
+                                        override fun onDataChange(p0: DataSnapshot) {
+                                            if (p0.exists()) {
+                                                for (i in p0.children) {
+                                                    val ut = i.getValue(Identitas::class.java)
+                                                    val editor = SP.edit()
+                                                    editor.putString("id_identitas", ut!!.id_Identitas)
+                                                    editor.putString("nik", ut.nik)
+                                                    editor.putString("tempat", ut.tempat)
+                                                    editor.putString("tanggal", ut.tanggal)
+                                                    editor.putString("gender", ut.gender)
+                                                    editor.putString("alamat", ut.alamat)
+                                                    editor.putString("foto", ut.foto)
+                                                    editor.apply()
+
+//                                                    if(us.level == "Pengguna") {
+                                                    btnLogin.isClickable = false
+                                                    val intent = Intent(this@ActivityLogin, ActivityUtama::class.java)
+                                                    startActivity(intent)
+                                                    finish()
+//                                                     } else if(us.level == "Admin") {
+//                                                    btnLogin.isClickable = false
+//                                                    val intent = Intent(this@ActivityLogin, com.example.projectskripsi.admin.ActivityUtama::class.java)
+//                                                    startActivity(intent)
+//                                                    finish()
+//                                                    }
+                                                }
+                                            }
+                                        }
+                                    })
                             } else {
                                 btnLogin.isClickable = true
                                 Toast.makeText(this@ActivityLogin, "Password salah", Toast.LENGTH_SHORT).show()
