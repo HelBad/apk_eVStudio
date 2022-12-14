@@ -9,7 +9,7 @@ class Pengguna {
     lateinit var level: String
 
     constructor() {}
-    constructor(id_pengguna:String, nama:String, email:String, password:String,
+    constructor(id_pengguna: String, nama: String, email: String, password: String,
                 telp: String, level: String) {
         this.id_pengguna = id_pengguna
         this.nama = nama

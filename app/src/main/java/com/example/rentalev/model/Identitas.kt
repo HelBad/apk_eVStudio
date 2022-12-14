@@ -9,10 +9,11 @@ class Identitas {
     lateinit var gender: String
     lateinit var alamat: String
     lateinit var foto: String
+    lateinit var status: String
 
     constructor() {}
-    constructor(id_Identitas:String, id_pengguna:String, nik:String, tempat: String,
-                tanggal: String, gender: String, alamat: String, foto: String) {
+    constructor(id_Identitas: String, id_pengguna: String, nik:String, tempat: String,
+                tanggal: String, gender: String, alamat: String, foto: String, status: String) {
         this.id_Identitas = id_Identitas
         this.id_pengguna = id_pengguna
         this.nik = nik
@@ -21,5 +22,6 @@ class Identitas {
         this.gender = gender
         this.alamat = alamat
         this.foto = foto
+        this.status = status
     }
 }

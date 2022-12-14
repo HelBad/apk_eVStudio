@@ -16,7 +16,7 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_profil.*
 
 class FragmentProfil : Fragment() {
-//    lateinit var ref: DatabaseReference
+    lateinit var ref: DatabaseReference
     lateinit var SP: SharedPreferences
     lateinit var alertDialog: AlertDialog.Builder
 
@@ -27,12 +27,11 @@ class FragmentProfil : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        ref = FirebaseDatabase.getInstance().getReference("izin")
+        ref = FirebaseDatabase.getInstance().getReference("pengguna")
         SP = requireActivity().applicationContext.getSharedPreferences("Pengguna", Context.MODE_PRIVATE)
         alertDialog = AlertDialog.Builder(requireActivity())
 
         dataAkun()
-
         editAkun.setOnClickListener {
             startActivity(Intent(activity, ActivityProfil::class.java))
         }
@@ -42,10 +41,17 @@ class FragmentProfil : Fragment() {
         namaAkun.text = SP.getString("nama", "")
         emailAkun.text = SP.getString("email", "")
         telpAkun.text = SP.getString("telp", "")
-        nikAkun.text = SP.getString("nik", "")
-        ttlAkun.text = SP.getString("tempat", "")
-        genderAkun.text = SP.getString("gender", "")
-        alamatAkun.text = SP.getString("alamat", "")
+        if(SP.getString("status", "") == "menunggu") {
+            nikAkun.text = "-"
+            ttlAkun.text = "-"
+            genderAkun.text = "-"
+            alamatAkun.text = "-"
+        } else {
+            nikAkun.text = SP.getString("nik", "")
+            ttlAkun.text = SP.getString("tempat", "") + ", " + SP.getString("tanggal", "")
+            genderAkun.text = SP.getString("gender", "")
+            alamatAkun.text = SP.getString("alamat", "")
 //        fotoAkun.text = SP.getString("foto", "")
+        }
     }
 }

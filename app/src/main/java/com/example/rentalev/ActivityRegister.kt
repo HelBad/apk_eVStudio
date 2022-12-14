@@ -15,7 +15,6 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_register.*
 
 class ActivityRegister : AppCompatActivity() {
-//    lateinit var SP: SharedPreferences
     lateinit var alertDialog: AlertDialog.Builder
     lateinit var ref: DatabaseReference
 
@@ -23,7 +22,6 @@ class ActivityRegister : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-//        SP = getSharedPreferences("Pengguna", Context.MODE_PRIVATE)
         alertDialog = AlertDialog.Builder(this)
         ref = FirebaseDatabase.getInstance().getReference("pengguna")
 
@@ -92,29 +90,12 @@ class ActivityRegister : AppCompatActivity() {
             passwordRegister.text.toString(), telpRegister.text.toString(), "Pengguna")
 
         ref.child(idPengguna).setValue(addData).addOnCompleteListener {
-//            val editor = SP.edit()
-//            editor.putString("id_pengguna", idPengguna)
-//            editor.putString("nama", namaRegister.text.toString())
-//            editor.putString("email", emailRegister.text.toString())
-//            editor.putString("password", passwordRegister.text.toString())
-//            editor.putString("telp", telpRegister.text.toString())
-//            editor.putString("level", addData.level)
-//            editor.apply()
-
             ref = FirebaseDatabase.getInstance().getReference("identitas")
             val idIdentitas  = ref.push().key.toString()
-            val addIdentitas = Identitas(idIdentitas, idPengguna, "-", "-", "-",
-                "-", "-", "-")
+            val addIdentitas = Identitas(idIdentitas, idPengguna, "", "", "",
+                "", "", "", "menunggu")
 
             ref.child(idIdentitas).setValue(addIdentitas).addOnCompleteListener {
-//                val editor = SP.edit()
-//                editor.putString("id_identitas", idIdentitas)
-//                editor.putString("nik", "-")
-//                editor.putString("ttl", "-")
-//                editor.putString("gender", "-")
-//                editor.putString("alamat", "-")
-//                editor.putString("foto", "-")
-//                editor.apply()
                 finish()
             }.addOnFailureListener {
                 btnRegister.isClickable = true
