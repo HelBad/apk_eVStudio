@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardNamaProfil"
                     app:cardCornerRadius="25dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardElevation="5dp"
@@ -53,9 +54,10 @@
                             android:id="@+id/namaProfil"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginRight="15dp"
                             android:layout_gravity="center_vertical"
                             android:background="@android:color/white"
-                            android:hint="Masukkan Nama"
+                            android:hint="Masukkan Nama Lengkap"
                             android:textColorHint="@color/colorGrey"
                             android:inputType="textPersonName"
                             android:textStyle="bold"
@@ -65,6 +67,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardEmailProfil"
                     app:cardCornerRadius="25dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardElevation="5dp"
@@ -87,6 +90,7 @@
                             android:id="@+id/emailProfil"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginRight="15dp"
                             android:layout_gravity="center_vertical"
                             android:background="@android:color/white"
                             android:hint="Masukkan Email"
@@ -99,6 +103,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardTelpProfil"
                     app:cardCornerRadius="25dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardElevation="5dp"
@@ -121,6 +126,7 @@
                             android:id="@+id/telpProfil"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginRight="15dp"
                             android:layout_gravity="center_vertical"
                             android:background="@android:color/white"
                             android:hint="Masukkan Nomor Telepon"
@@ -133,6 +139,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardNikProfil"
                     app:cardCornerRadius="25dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardElevation="5dp"
@@ -155,6 +162,7 @@
                             android:id="@+id/nikProfil"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginRight="15dp"
                             android:layout_gravity="center_vertical"
                             android:background="@android:color/white"
                             android:hint="Masukkan NIK"
@@ -167,6 +175,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardTempatProfil"
                     app:cardCornerRadius="25dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardElevation="5dp"
@@ -189,6 +198,7 @@
                             android:id="@+id/tempatProfil"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginRight="15dp"
                             android:layout_gravity="center_vertical"
                             android:background="@android:color/white"
                             android:hint="Masukkan Tempat Lahir"
@@ -201,6 +211,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardTanggalProfil"
                     app:cardCornerRadius="25dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardElevation="5dp"
@@ -223,6 +234,7 @@
                             android:id="@+id/tanggalProfil"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginRight="15dp"
                             android:background="@android:color/white"
                             android:gravity="center_vertical"
                             android:hint="Masukkan Tanggal Lahir"
@@ -235,6 +247,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardGenderProfil"
                     app:cardCornerRadius="25dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardElevation="5dp"
@@ -256,7 +269,6 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
-
                             <Spinner
                                 android:id="@+id/spinnerProfil"
                                 android:layout_width="match_parent"
@@ -269,8 +281,8 @@
                                 android:id="@+id/genderProfil"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_centerVertical="true"
                                 android:layout_marginRight="45dp"
+                                android:layout_centerVertical="true"
                                 android:background="@android:color/white"
                                 android:gravity="center_vertical"
                                 android:hint="Masukkan Jenis Kelamin"
@@ -284,6 +296,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardAlamatProfil"
                     app:cardCornerRadius="25dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardElevation="5dp"
@@ -306,6 +319,7 @@
                             android:id="@+id/alamatProfil"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginRight="15dp"
                             android:layout_gravity="center_vertical"
                             android:background="@android:color/white"
                             android:hint="Masukkan Alamat"
@@ -318,6 +332,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardFotoProfil"
                     app:cardCornerRadius="25dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardElevation="5dp"
@@ -340,9 +355,10 @@
                             android:id="@+id/fotoProfil"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginRight="15dp"
+                            android:layout_gravity="center_vertical"
                             android:background="@android:color/white"
-                            android:gravity="center_vertical"
-                            android:hint="Foto Tampak Wajah dan Identitas"
+                            android:hint="Foto tampak wajah dan identitas"
                             android:textColorHint="@color/colorGrey"
                             android:textStyle="bold"
                             android:textColor="@android:color/black"
