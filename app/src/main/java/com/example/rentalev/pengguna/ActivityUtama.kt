@@ -1,5 +1,6 @@
 package com.example.rentalev.pengguna
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.rentalev.R
 import com.example.rentalev.pengguna.fragment.FragmentBeranda
+import com.example.rentalev.pengguna.fragment.FragmentInbox
 import com.example.rentalev.pengguna.fragment.FragmentPesanan
 import com.example.rentalev.pengguna.fragment.FragmentProfil
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -25,6 +27,10 @@ class ActivityUtama : AppCompatActivity() {
                 replaceFragment(FragmentPesanan())
                 return@OnNavigationItemSelectedListener true
             }
+            R.id.inbox -> {
+                replaceFragment(FragmentInbox())
+                return@OnNavigationItemSelectedListener true
+            }
             R.id.profil -> {
                 replaceFragment(FragmentProfil())
                 return@OnNavigationItemSelectedListener true
@@ -33,6 +39,7 @@ class ActivityUtama : AppCompatActivity() {
         false
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_utama)

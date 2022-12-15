@@ -22,10 +22,13 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.example.rentalev.R
+import com.example.rentalev.model.Identitas
+import com.example.rentalev.model.Inbox
+import com.example.rentalev.model.Pengguna
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_profil.*
-import kotlinx.android.synthetic.main.fragment_profil.*
+import kotlinx.android.synthetic.main.activity_register.*
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -82,10 +85,18 @@ class ActivityProfil : AppCompatActivity() {
         }
     }
 
-    //
     override fun onStart() {
         super.onStart()
-        if(SP.getString("status", "") == "disetujui") {
+        if(SP.getString("status", "") == "approve") {
+            namaProfil.isEnabled = false
+            namaProfil.setTextColor(ContextCompat.getColor(applicationContext, R.color.colorGrey))
+            cardNikProfil.visibility = View.GONE
+            cardTempatProfil.visibility = View.GONE
+            cardTanggalProfil.visibility = View.GONE
+            cardGenderProfil.visibility = View.GONE
+            cardAlamatProfil.visibility = View.GONE
+            cardFotoProfil.visibility = View.GONE
+        } else if(SP.getString("status", "") == "pending") {
             namaProfil.isEnabled = false
             namaProfil.setTextColor(ContextCompat.getColor(applicationContext, R.color.colorGrey))
             cardNikProfil.visibility = View.GONE
@@ -267,9 +278,8 @@ class ActivityProfil : AppCompatActivity() {
         db1.child("tanggal").setValue(tanggalProfil.text.toString())
         db1.child("gender").setValue(genderProfil.text.toString())
         db1.child("alamat").setValue(alamatProfil.text.toString())
-
-        //
         db1.child("foto").setValue(url.toString())
+        db1.child("status").setValue("pending")
 
         val editor = SP.edit()
         editor.putString("nama", namaProfil.text.toString())
@@ -281,6 +291,29 @@ class ActivityProfil : AppCompatActivity() {
         editor.putString("gender", genderProfil.text.toString())
         editor.putString("alamat", alamatProfil.text.toString())
         editor.putString("foto", url.toString())
+        editor.putString("status", "pending")
         editor.apply()
+
+        ref = FirebaseDatabase.getInstance().getReference("inbox")
+        val idInbox  = ref.push().key.toString()
+        val addData = Inbox(idInbox, SP.getString("id_pengguna", "").toString(),
+            SP.getString("id_identitas", "").toString(), "Pengajuan Identitas",
+            "Identitas berhasil terkirim. Harap tunggu persetujuan dari Admin sebelum melakukan transaksi")
+        ref.child(idInbox).setValue(addData).addOnCompleteListener {
+            ref = FirebaseDatabase.getInstance().getReference("identitas")
+            val idIdentitas  = ref.push().key.toString()
+            val addIdentitas = Identitas(idIdentitas, idPengguna, "", "", "",
+                "", "", "", "empty")
+
+            ref.child(idIdentitas).setValue(addIdentitas).addOnCompleteListener {
+                finish()
+            }.addOnFailureListener {
+                btnRegister.isClickable = true
+                Toast.makeText(this, "Gagal Register", Toast.LENGTH_SHORT).show()
+            }
+        }.addOnFailureListener {
+            btnRegister.isClickable = true
+            Toast.makeText(this, "Gagal Register", Toast.LENGTH_SHORT).show()
+        }
     }
 }

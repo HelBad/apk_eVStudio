@@ -13,6 +13,7 @@ import com.example.rentalev.ActivityRegister
 import com.example.rentalev.R
 import com.example.rentalev.pengguna.ActivityProfil
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_profil.*
 
 class FragmentProfil : Fragment() {
@@ -41,7 +42,12 @@ class FragmentProfil : Fragment() {
         namaAkun.text = SP.getString("nama", "")
         emailAkun.text = SP.getString("email", "")
         telpAkun.text = SP.getString("telp", "")
-        if(SP.getString("status", "") == "menunggu") {
+        if(SP.getString("status", "") == "empty") {
+            nikAkun.text = "-"
+            ttlAkun.text = "-"
+            genderAkun.text = "-"
+            alamatAkun.text = "-"
+        } else if(SP.getString("status", "") == "pending") {
             nikAkun.text = "-"
             ttlAkun.text = "-"
             genderAkun.text = "-"
@@ -51,7 +57,7 @@ class FragmentProfil : Fragment() {
             ttlAkun.text = SP.getString("tempat", "") + ", " + SP.getString("tanggal", "")
             genderAkun.text = SP.getString("gender", "")
             alamatAkun.text = SP.getString("alamat", "")
-//        fotoAkun.text = SP.getString("foto", "")
+            Picasso.get().load(SP.getString("foto", "")).into(fotoAkun)
         }
     }
 }

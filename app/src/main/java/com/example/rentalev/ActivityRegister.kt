@@ -93,7 +93,7 @@ class ActivityRegister : AppCompatActivity() {
             ref = FirebaseDatabase.getInstance().getReference("identitas")
             val idIdentitas  = ref.push().key.toString()
             val addIdentitas = Identitas(idIdentitas, idPengguna, "", "", "",
-                "", "", "", "menunggu")
+                "", "", "", "empty")
 
             ref.child(idIdentitas).setValue(addIdentitas).addOnCompleteListener {
                 finish()
