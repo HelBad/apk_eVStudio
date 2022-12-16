@@ -1,16 +1,19 @@
 package com.example.rentalev.pengguna.fragment
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import com.example.rentalev.ActivityLogin
 import com.example.rentalev.ActivityRegister
 import com.example.rentalev.R
+import com.example.rentalev.model.Identitas
 import com.example.rentalev.pengguna.ActivityProfil
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
@@ -27,6 +30,10 @@ class FragmentProfil : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setHasOptionsMenu(true)
+        val actionBar = requireActivity().findViewById(R.id.toolbarAkun) as Toolbar
+        (activity as AppCompatActivity).setSupportActionBar(actionBar)
 
         ref = FirebaseDatabase.getInstance().getReference("pengguna")
         SP = requireActivity().applicationContext.getSharedPreferences("Pengguna", Context.MODE_PRIVATE)
@@ -59,5 +66,50 @@ class FragmentProfil : Fragment() {
             alamatAkun.text = SP.getString("alamat", "")
             Picasso.get().load(SP.getString("foto", "")).into(fotoAkun)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        val inflater = requireActivity().menuInflater
+        inflater.inflate(R.menu.bar_profil, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        if (id == R.id.logout) {
+            alertDialog.setTitle("Keluar Akun")
+            alertDialog.setMessage("Apakah anda ingin keluar dari akun ini ?").setCancelable(false)
+                .setPositiveButton("YA", object: DialogInterface.OnClickListener {
+                    override fun onClick(dialog: DialogInterface, id:Int) {
+                        val editor = SP.edit()
+                        editor.putString("id_pengguna", "")
+                        editor.putString("nama", "")
+                        editor.putString("email", "")
+                        editor.putString("password", "")
+                        editor.putString("telp", "")
+                        editor.putString("level", "")
+                        editor.putString("id_identitas", "")
+                        editor.putString("nik", "")
+                        editor.putString("tempat", "")
+                        editor.putString("tanggal", "")
+                        editor.putString("gender", "")
+                        editor.putString("alamat", "")
+                        editor.putString("foto", "")
+                        editor.putString("status", "")
+                        editor.apply()
+
+                        startActivity(Intent(context, ActivityLogin::class.java))
+                        activity!!.finish()
+                    }
+                })
+                .setNegativeButton("TIDAK", object: DialogInterface.OnClickListener {
+                    override fun onClick(dialog: DialogInterface, id:Int) {
+                        dialog.cancel()
+                    }
+                }).create().show()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

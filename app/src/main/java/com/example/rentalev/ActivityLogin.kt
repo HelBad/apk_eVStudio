@@ -79,7 +79,7 @@ class ActivityLogin : AppCompatActivity() {
                                                 for (i in p0.children) {
                                                     val ut = i.getValue(Identitas::class.java)
                                                     val editor = SP.edit()
-                                                    editor.putString("id_identitas", ut!!.id_Identitas)
+                                                    editor.putString("id_identitas", ut!!.id_identitas)
                                                     editor.putString("nik", ut.nik)
                                                     editor.putString("tempat", ut.tempat)
                                                     editor.putString("tanggal", ut.tanggal)

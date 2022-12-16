@@ -39,7 +39,7 @@ class FragmentInbox : Fragment() {
     override fun onStart() {
         super.onStart()
         val query = FirebaseDatabase.getInstance().getReference("inbox")
-            .child(SP.getString("id_pengguna", "").toString())
+            .orderByChild("id_pengguna").equalTo(SP.getString("id_pengguna", "").toString())
         val firebaseRecyclerAdapter = object: FirebaseRecyclerAdapter<Inbox, ViewholderInbox>(
             Inbox::class.java,
             R.layout.list_inbox,

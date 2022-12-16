@@ -16,28 +16,25 @@
             android:id="@+id/judulInbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
             android:text="Judul"
             android:textColor="@android:color/black"
-            android:textSize="18dp"
+            android:textSize="15dp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/ketInbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
             android:text="Keterangan"
             android:textColor="@color/colorGrey"
-            android:textSize="15dp"
-            android:textStyle="bold" />
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/statusInbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Status"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             android:textSize="15dp"
             android:textStyle="bold"/>
     </LinearLayout>

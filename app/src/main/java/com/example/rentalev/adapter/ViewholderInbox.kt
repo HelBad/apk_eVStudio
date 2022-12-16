@@ -1,7 +1,5 @@
 package com.example.rentalev.adapter
 
-import android.content.DialogInterface
-import android.content.Intent
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -12,8 +10,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.storage.FirebaseStorage
-import com.squareup.picasso.Picasso
 
 class ViewholderInbox(itemView: View): RecyclerView.ViewHolder(itemView) {
     private var mView: View = itemView
@@ -43,7 +39,7 @@ class ViewholderInbox(itemView: View): RecyclerView.ViewHolder(itemView) {
             override fun onDataChange(datasnapshot: DataSnapshot) {
                 for (snapshot1 in datasnapshot.children) {
                     val allocation = snapshot1.getValue(Identitas::class.java)
-                    statusInbox.text = allocation!!.id_identitas
+                    statusInbox.text = "Status : " + allocation!!.status
                 }
             }
             override fun onCancelled(databaseError: DatabaseError) {}

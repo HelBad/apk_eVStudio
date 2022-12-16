@@ -1,15 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
+    android:orientation="vertical"
     tools:context=".pengguna.fragment.FragmentBeranda">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarBeranda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:title="Beranda" />
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.denzcoskun.imageslider.ImageSlider
+        android:id="@+id/imageSlider"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        app:iss_auto_cycle="true"
+        app:iss_delay="0"
+        app:iss_period="3000"
+        app:iss_corner_radius="5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_below="@+id/imageSlider"
+        android:background="@drawable/dec_gradasi" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerInbox"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+        android:layout_below="@+id/imageSlider"/>
+</RelativeLayout>

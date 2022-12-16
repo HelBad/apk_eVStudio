@@ -22,9 +22,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.example.rentalev.R
-import com.example.rentalev.model.Identitas
 import com.example.rentalev.model.Inbox
-import com.example.rentalev.model.Pengguna
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_profil.*
@@ -281,6 +279,13 @@ class ActivityProfil : AppCompatActivity() {
         db1.child("foto").setValue(url.toString())
         db1.child("status").setValue("pending")
 
+        ref = FirebaseDatabase.getInstance().getReference("inbox")
+        val idInbox  = ref.push().key.toString()
+        val addData = Inbox(idInbox, SP.getString("id_pengguna", "").toString(),
+            SP.getString("id_identitas", "").toString(), "Pengajuan Identitas",
+            "Identitas berhasil terkirim. Harap tunggu persetujuan dari Admin sebelum melakukan transaksi.")
+        ref.child(idInbox).setValue(addData)
+
         val editor = SP.edit()
         editor.putString("nama", namaProfil.text.toString())
         editor.putString("email", emailProfil.text.toString())
@@ -293,27 +298,5 @@ class ActivityProfil : AppCompatActivity() {
         editor.putString("foto", url.toString())
         editor.putString("status", "pending")
         editor.apply()
-
-        ref = FirebaseDatabase.getInstance().getReference("inbox")
-        val idInbox  = ref.push().key.toString()
-        val addData = Inbox(idInbox, SP.getString("id_pengguna", "").toString(),
-            SP.getString("id_identitas", "").toString(), "Pengajuan Identitas",
-            "Identitas berhasil terkirim. Harap tunggu persetujuan dari Admin sebelum melakukan transaksi")
-        ref.child(idInbox).setValue(addData).addOnCompleteListener {
-            ref = FirebaseDatabase.getInstance().getReference("identitas")
-            val idIdentitas  = ref.push().key.toString()
-            val addIdentitas = Identitas(idIdentitas, idPengguna, "", "", "",
-                "", "", "", "empty")
-
-            ref.child(idIdentitas).setValue(addIdentitas).addOnCompleteListener {
-                finish()
-            }.addOnFailureListener {
-                btnRegister.isClickable = true
-                Toast.makeText(this, "Gagal Register", Toast.LENGTH_SHORT).show()
-            }
-        }.addOnFailureListener {
-            btnRegister.isClickable = true
-            Toast.makeText(this, "Gagal Register", Toast.LENGTH_SHORT).show()
-        }
     }
 }
