@@ -26,7 +26,6 @@ import com.example.rentalev.model.Inbox
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_profil.*
-import kotlinx.android.synthetic.main.activity_register.*
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat

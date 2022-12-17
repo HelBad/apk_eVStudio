@@ -11,9 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.rentalev.ActivityLogin
-import com.example.rentalev.ActivityRegister
 import com.example.rentalev.R
-import com.example.rentalev.model.Identitas
 import com.example.rentalev.pengguna.ActivityProfil
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso

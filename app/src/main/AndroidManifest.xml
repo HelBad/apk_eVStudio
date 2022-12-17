@@ -18,6 +18,13 @@
         android:theme="@style/AppTheme"
         tools:targetApi="33">
         <activity
+            android:name=".ActivityDetail"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".pengguna.ActivityProfil"
             android:exported="false">
             <meta-data

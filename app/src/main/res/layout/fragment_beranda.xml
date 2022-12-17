@@ -32,8 +32,9 @@
         android:background="@drawable/dec_gradasi" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerInbox"
+        android:id="@+id/recyclerBeranda"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="10dp"
         android:layout_below="@+id/imageSlider"/>
 </RelativeLayout>
