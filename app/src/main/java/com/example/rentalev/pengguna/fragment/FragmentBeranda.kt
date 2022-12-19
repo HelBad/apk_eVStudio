@@ -1,5 +1,6 @@
 package com.example.rentalev.pengguna.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.example.rentalev.R
 import com.example.rentalev.adapter.ViewholderBeranda
 import com.example.rentalev.model.Produk
+import com.example.rentalev.pengguna.ActivityDetail
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_beranda.*
@@ -52,7 +54,9 @@ class FragmentBeranda : Fragment() {
                 val viewHolder = super.onCreateViewHolder(parent, viewType)
                 viewHolder.setOnClickListener(object: ViewholderBeranda.ClickListener {
                     override fun onItemClick(view:View, position:Int) {
-                        //
+                        val intent = Intent(view.context, ActivityDetail::class.java)
+                        intent.putExtra("id_produk", viewHolder.produk.id_produk)
+                        startActivity(intent)
                     }
                     override fun onItemLongClick(view:View, position:Int) {}
                 })

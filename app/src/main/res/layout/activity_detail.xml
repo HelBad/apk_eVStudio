@@ -24,69 +24,33 @@
         android:padding="10dp"
         android:elevation="5dp"
         android:orientation="horizontal">
-        <LinearLayout
+        <TextView
+            android:id="@+id/btnBooking"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginHorizontal="5dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:id="@+id/kurangDetail"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/ic_logout"
-                android:backgroundTint="@color/colorPrimary" />
-
-            <EditText
-                android:id="@+id/jumlahDetail"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:backgroundTint="@color/colorAccent"
-                android:editable="false"
-                android:text="0"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/tambahDetail"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/ic_logout"
-                android:backgroundTint="@color/colorPrimary" />
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btnHapus"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:background="@drawable/dec_button"
             android:backgroundTint="@color/colorAccent"
-            android:text="HAPUS"
+            android:gravity="center"
+            android:text="+ BOOKING"
             android:textColor="@android:color/white"
             android:textSize="15dp"
-            android:visibility="gone"/>
+            android:textStyle="bold"/>
 
-        <Button
-            android:id="@+id/btnPesan"
+        <TextView
+            android:id="@+id/btnOrder"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:background="@drawable/dec_button"
             android:backgroundTint="@color/colorPrimary"
-            android:text="+ Keranjang"
+            android:gravity="center"
+            android:text="+ ORDER"
             android:textColor="@android:color/white"
             android:textSize="15dp"
-            android:visibility="visible"/>
+            android:textStyle="bold"/>
     </LinearLayout>
 
     <ScrollView
@@ -98,7 +62,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">]
+            android:orientation="vertical">
             <ImageView
                 android:id="@+id/imgDetail"
                 android:layout_width="match_parent"
@@ -112,7 +76,7 @@
                 android:layout_margin="15dp"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/hargaDetail1"
+                    android:id="@+id/hargaDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
@@ -137,6 +101,7 @@
                     android:layout_height="wrap_content"
                     android:text="56 tersisa"
                     android:textColor="@color/colorGrey"
+                    android:textStyle="bold"
                     android:textSize="15dp"/>
             </LinearLayout>
 
@@ -159,54 +124,13 @@
                     android:textColor="@android:color/black"/>
 
                 <TextView
+                    android:id="@+id/deskripsiDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="Saringan Pompa Bensin / Filter Fuel Pump. Merk : Fuboru. Kualitas : Baik. Filter Bensin merupakan filter yang berfungsi untuk menyaring dan membersihkan bensin dari partikel dan kotoran sebelum dikirim ke fuel pump yang di mesin. Dapat Diaplikasikan Untuk Motor : Mio J, Supra X 125 Fi, Revo 110 Fi, New Blade 125 Fi, Vario 125 Fi, Beat Fi, Scoopy Fi, Vario 110 Fi"
                     android:textSize="15dp"
                     android:textColor="@android:color/black"/>
-
-                <ImageView
-                    android:id="@+id/brosurDetail"
-                    android:layout_width="288dp"
-                    android:layout_height="162dp"
-                    android:layout_marginVertical="10dp"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/tes_img_1"
-                    android:scaleType="centerCrop"/>
-
-                <ImageView
-                    android:id="@+id/videoDetail"
-                    android:layout_width="288dp"
-                    android:layout_height="162dp"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/tes_img_1"
-                    android:scaleType="centerCrop"/>
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:background="#FFDDDDDD" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="15dp"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Rekomendasi Produk"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black"/>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rekomendasiDetail"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

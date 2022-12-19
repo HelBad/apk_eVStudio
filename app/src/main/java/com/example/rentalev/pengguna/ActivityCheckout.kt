@@ -1,8 +1,8 @@
 package com.example.rentalev.pengguna
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.example.rentalev.R
 import com.example.rentalev.model.Produk
 import com.google.firebase.database.DataSnapshot
@@ -10,33 +10,40 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_checkout.*
 import kotlinx.android.synthetic.main.activity_detail.*
-import java.text.DecimalFormat
-import java.text.NumberFormat
 
-class ActivityDetail : AppCompatActivity() {
-    var formatNumber: NumberFormat = DecimalFormat("#,###")
+class ActivityCheckout : AppCompatActivity() {
+    var countJumlah = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
+        setContentView(R.layout.activity_checkout)
 
-        setDetail()
-        btnOrder.setOnClickListener {
-            val intent = Intent(this@ActivityDetail, ActivityCheckout::class.java)
-            intent.putExtra("id_produk", intent.getStringExtra("id_produk").toString())
-            intent.putExtra("pesanan", "order")
-            startActivity(intent)
+        setJumlah()
+    }
+
+    private fun setJumlah() {
+        tambahCo.setOnClickListener {
+            countJumlah = jumlahCo.text.toString().toInt()
+            countJumlah++
+            jumlahCo.setText(countJumlah.toString())
         }
-        btnBooking.setOnClickListener {
-            val intent = Intent(this@ActivityDetail, ActivityCheckout::class.java)
-            intent.putExtra("id_produk", intent.getStringExtra("id_produk").toString())
-            intent.putExtra("pesanan", "booking")
-            startActivity(intent)
+        kurangCo.setOnClickListener {
+            if (jumlahCo.text.toString() == "1") {
+            } else if (jumlahCo.text.toString() == "2") {
+                countJumlah = jumlahCo.text.toString().toInt()
+                countJumlah--
+                jumlahCo.setText(countJumlah.toString())
+            } else {
+                countJumlah = jumlahCo.text.toString().toInt()
+                countJumlah--
+                jumlahCo.setText(countJumlah.toString())
+            }
         }
     }
 
-    private fun setDetail() {
+    private fun setData() {
         val query = FirebaseDatabase.getInstance().getReference("produk")
             .orderByChild("id_produk").equalTo(intent.getStringExtra("id_produk").toString())
         query.addListenerForSingleValueEvent(object: ValueEventListener {
