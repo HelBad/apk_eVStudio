@@ -1,24 +1,33 @@
 package com.example.rentalev.pengguna
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputFilter
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.rentalev.R
 import com.example.rentalev.model.Produk
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_checkout.*
 import kotlinx.android.synthetic.main.activity_detail.*
+import kotlinx.android.synthetic.main.activity_profil.*
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class ActivityCheckout : AppCompatActivity() {
     lateinit var SP: SharedPreferences
     var countJumlah = 0
+    var formatTanggal = SimpleDateFormat("dd MMM YYYY")
+    val kalender = Calendar.getInstance()
+    var formatWaktu = SimpleDateFormat("hh:mm aa")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +36,12 @@ class ActivityCheckout : AppCompatActivity() {
         SP = applicationContext.getSharedPreferences("Pengguna", Context.MODE_PRIVATE)
         setJumlah()
         setData()
+        tglCo.setOnClickListener {
+            setTanggal()
+        }
+        waktuCo.setOnClickListener {
+            setWaktu()
+        }
     }
 
     override fun onStart() {
@@ -61,6 +76,27 @@ class ActivityCheckout : AppCompatActivity() {
                 jumlahCo.setText(countJumlah.toString())
             }
         }
+    }
+
+    private fun setTanggal() {
+        val tglBooking = DatePickerDialog(this, {
+                view, year, month, dayOfMonth -> val selectedDate = Calendar.getInstance()
+            selectedDate.set(Calendar.YEAR, year)
+            selectedDate.set(Calendar.MONTH, month)
+            selectedDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            tglCo.text = Editable.Factory.getInstance().newEditable(formatTanggal.format(selectedDate.time))
+        }, kalender.get(Calendar.YEAR), kalender.get(Calendar.MONTH), kalender.get(Calendar.DAY_OF_MONTH))
+        tglBooking.show()
+    }
+
+    private fun setWaktu() {
+        val waktuBooking = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener {
+                view, hourOfDay, minute -> val selectedTime = Calendar.getInstance()
+            selectedTime.set(Calendar.HOUR_OF_DAY, hourOfDay)
+            selectedTime.set(Calendar.MINUTE, minute)
+            waktuCo.text = Editable.Factory.getInstance().newEditable(formatWaktu.format(selectedTime.time))
+        }, kalender.get(Calendar.HOUR_OF_DAY), kalender.get(Calendar.MINUTE), false)
+        waktuBooking.show()
     }
 
     private fun setData() {
