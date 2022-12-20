@@ -24,10 +24,11 @@ import java.util.*
 
 class ActivityCheckout : AppCompatActivity() {
     lateinit var SP: SharedPreferences
-    var countJumlah = 0
     var formatTanggal = SimpleDateFormat("dd MMM YYYY")
     val kalender = Calendar.getInstance()
     var formatWaktu = SimpleDateFormat("hh:mm aa")
+    var countJumlah = 0
+    var countDurasi = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +36,7 @@ class ActivityCheckout : AppCompatActivity() {
 
         SP = applicationContext.getSharedPreferences("Pengguna", Context.MODE_PRIVATE)
         setJumlah()
+        setDurasi()
         setData()
         tglCo.setOnClickListener {
             setTanggal()
@@ -60,7 +62,7 @@ class ActivityCheckout : AppCompatActivity() {
     }
 
     private fun setJumlah() {
-        tambahCo.setOnClickListener {
+        plusJumlahCo.setOnClickListener {
             if ("tersisa : " + jumlahCo.text.toString() == stokCo.text.toString()) {
             } else {
                 countJumlah = jumlahCo.text.toString().toInt()
@@ -68,12 +70,35 @@ class ActivityCheckout : AppCompatActivity() {
                 jumlahCo.setText(countJumlah.toString())
             }
         }
-        kurangCo.setOnClickListener {
+        minJumlahCo.setOnClickListener {
             if (jumlahCo.text.toString() == "1") {
             } else {
                 countJumlah = jumlahCo.text.toString().toInt()
                 countJumlah--
                 jumlahCo.setText(countJumlah.toString())
+            }
+        }
+    }
+
+    private fun setDurasi() {
+//        bayarCo1.text =
+
+        plusDurasiCo.setOnClickListener {
+            if (durasiCo.text.toString() == "3") {
+            } else {
+                countDurasi = durasiCo.text.toString().toInt()
+                countDurasi++
+                durasiCo.setText(countDurasi.toString())
+
+
+            }
+        }
+        minDurasiCo.setOnClickListener {
+            if (durasiCo.text.toString() == "1") {
+            } else {
+                countDurasi = durasiCo.text.toString().toInt()
+                countDurasi--
+                durasiCo.setText(countDurasi.toString())
             }
         }
     }

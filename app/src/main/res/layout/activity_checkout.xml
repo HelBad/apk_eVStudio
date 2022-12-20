@@ -67,10 +67,20 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="5dp"
                         android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:gravity="center_vertical"
+                            android:text="Jumlah :"
+                            android:textSize="15dp"
+                            android:textColor="@color/colorGrey"
+                            android:textStyle="bold"/>
+
                         <ImageView
-                            android:id="@+id/kurangCo"
+                            android:id="@+id/minJumlahCo"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_gravity="center_vertical"
@@ -79,9 +89,8 @@
 
                         <EditText
                             android:id="@+id/jumlahCo"
-                            android:layout_width="50dp"
+                            android:layout_width="40dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="5dp"
                             android:backgroundTint="@color/colorAccent"
                             android:text="1"
                             android:textAlignment="center"
@@ -91,12 +100,23 @@
                             android:editable="false"/>
 
                         <ImageView
-                            android:id="@+id/tambahCo"
+                            android:id="@+id/plusJumlahCo"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_gravity="center_vertical"
                             android:background="@drawable/ic_tambah"
                             android:backgroundTint="@color/colorPrimary" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:gravity="center_vertical"
+                            android:text="unit"
+                            android:textSize="15dp"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"/>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -236,41 +256,61 @@
                     android:layout_marginLeft="10dp"
                     app:srcCompat="@drawable/ic_timer" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:background="@android:color/white"
-                    android:text="Durasi Sewa : "
-                    android:textColor="@color/colorGrey"
-                    android:textSize="15dp"
-                    android:textStyle="bold"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center_vertical"
+                        android:text="Durasi sewa :"
+                        android:textSize="15dp"
+                        android:textColor="@color/colorGrey"
+                        android:textStyle="bold"/>
 
-                <EditText
-                    android:id="@+id/kembaliCo"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:backgroundTint="@color/colorAccent"
-                    android:text="1"
-                    android:inputType="number"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="15dp"
-                    android:textStyle="bold"/>
+                    <ImageView
+                        android:id="@+id/minDurasiCo"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/ic_kurang"
+                        android:backgroundTint="@color/colorPrimary" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:background="@android:color/white"
-                    android:text="hari"
-                    android:textColor="@android:color/black"
-                    android:textSize="15dp"
-                    android:textStyle="bold"/>
+                    <EditText
+                        android:id="@+id/durasiCo"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorAccent"
+                        android:text="1"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:editable="false"/>
+
+                    <ImageView
+                        android:id="@+id/plusDurasiCo"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/ic_tambah"
+                        android:backgroundTint="@color/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center_vertical"
+                        android:text="hari"
+                        android:textSize="15dp"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"/>
+                </LinearLayout>
             </LinearLayout>
 
             <RelativeLayout
