@@ -12,11 +12,14 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
+import java.text.DecimalFormat
+import java.text.NumberFormat
 
 class ViewholderPesanan(itemView: View): RecyclerView.ViewHolder(itemView) {
     private var mView: View = itemView
     private var mClickListener: ClickListener? = null
     var pesanan = Pesanan()
+    var formatNumber: NumberFormat = DecimalFormat("#,###")
 
     init {
         itemView.setOnClickListener { view -> mClickListener!!.onItemClick(view, adapterPosition) }
@@ -39,9 +42,9 @@ class ViewholderPesanan(itemView: View): RecyclerView.ViewHolder(itemView) {
             override fun onDataChange(datasnapshot: DataSnapshot) {
                 for (snapshot1 in datasnapshot.children) {
                     val allocation = snapshot1.getValue(Produk::class.java)
-                    statusPesanan.text = pesanan.status_pesanan
+                    statusPesanan.text = "Status : " + pesanan.status_pesanan
                     namaprodukPesanan.text = allocation!!.nama_produk
-                    hargaprodukPesanan.text = allocation.harga
+                    hargaprodukPesanan.text = "Rp. " + formatNumber.format(allocation.harga.toInt()) + ",00"
                     Picasso.get().load(allocation.gambar).into(imgPesanan)
                 }
             }

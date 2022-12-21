@@ -21,7 +21,6 @@ class ActivityPesanan : AppCompatActivity() {
         setContentView(R.layout.activity_pesanan)
 
         setDetail()
-        verify()
     }
 
     private fun setDetail() {
@@ -68,10 +67,16 @@ class ActivityPesanan : AppCompatActivity() {
                     val k = snapshot4.getValue(Pesanan::class.java)
                     jumlahPesan.text = "Jumlah : " + k!!.jumlah
                     lokasiPesan.text = ": " + k.lokasi
-                    tglPesan.text = ": " + k.tgl_pesan
-                    waktuPesan.text = ": " + k.waktu_pesan
-                    durasiPesan.text = ": " + k.durasi + " hari"
                     subtotalPesan.text = ": Rp. " + formatNumber.format(k.subtotal.toInt()) + ",00"
+                    if(k.tgl_pesan == "") {
+                        laytglPesan.visibility = View.GONE
+                        laydurasiPesan.visibility = View.GONE
+                        laywaktuPesan.visibility = View.GONE
+                    } else {
+                        tglPesan.text = ": " + k.tgl_pesan
+                        waktuPesan.text = ": " + k.waktu_pesan
+                        durasiPesan.text = ": " + k.durasi + " hari"
+                    }
                 }
             }
             override fun onCancelled(databaseError: DatabaseError) {}
@@ -83,28 +88,18 @@ class ActivityPesanan : AppCompatActivity() {
             override fun onDataChange(datasnapshot: DataSnapshot) {
                 for (snapshot5 in datasnapshot.children) {
                     val l = snapshot5.getValue(Pembayaran::class.java)
-                    jaminanPesan.text = ": " + l!!.jaminan
-                    metodePesan.text = ": " + l.metode
+                    metodePesan.text = ": " + l!!.metode
                     adminPesan.text = ": Rp. " + formatNumber.format(l.admin.toInt()) + ",00"
                     ongkirPesan.text = ": Rp. " + formatNumber.format(l.ongkir.toInt()) + ",00"
                     totalPesan.text = ": Rp. " + formatNumber.format(l.total_bayar.toInt()) + ",00"
+                    if(l.jaminan == "") {
+                        layjaminanPesan.visibility = View.GONE
+                    } else {
+                        jaminanPesan.text = ": " + l!!.jaminan
+                    }
                 }
             }
             override fun onCancelled(databaseError: DatabaseError) {}
         })
-    }
-
-    private fun verify() {
-        if(tglPesan.text.toString() == "") {
-            laytglPesan.visibility = View.GONE
-            laydurasiPesan.visibility = View.GONE
-            laywaktuPesan.visibility = View.GONE
-            layjaminanPesan.visibility = View.GONE
-        } else {
-            laytglPesan.visibility = View.VISIBLE
-            laydurasiPesan.visibility = View.VISIBLE
-            laywaktuPesan.visibility = View.VISIBLE
-            layjaminanPesan.visibility = View.VISIBLE
-        }
     }
 }
