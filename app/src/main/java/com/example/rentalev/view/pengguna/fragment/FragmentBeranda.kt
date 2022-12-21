@@ -1,4 +1,4 @@
-package com.example.rentalev.pengguna.fragment
+package com.example.rentalev.view.pengguna.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,7 +12,7 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.example.rentalev.R
 import com.example.rentalev.adapter.ViewholderBeranda
 import com.example.rentalev.model.Produk
-import com.example.rentalev.pengguna.ActivityDetail
+import com.example.rentalev.view.pengguna.ActivityDetail
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_beranda.*

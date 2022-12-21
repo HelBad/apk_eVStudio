@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
-    tools:context=".pengguna.fragment.FragmentPesanan">
+    tools:context=".view.pengguna.fragment.FragmentPesanan">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarPesanan"
         android:layout_width="match_parent"
@@ -15,4 +15,9 @@
         android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         app:title="Pesanan" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerPesanan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

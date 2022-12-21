@@ -1,4 +1,4 @@
-package com.example.rentalev.pengguna
+package com.example.rentalev.view.pengguna
 
 import android.Manifest
 import android.app.DatePickerDialog
@@ -61,8 +61,7 @@ class ActivityProfil : AppCompatActivity() {
         }
 
         btnSimpan.setOnClickListener {
-            alertDialog.setMessage("Apakah data yang dimasukkan sudah benar ?")
-                .setCancelable(false)
+            alertDialog.setMessage("Apakah data yang dimasukkan sudah benar ?").setCancelable(false)
                 .setPositiveButton("YA", object: DialogInterface.OnClickListener {
                     override fun onClick(dialog: DialogInterface, id:Int) {
                         if(validate()){
@@ -281,8 +280,9 @@ class ActivityProfil : AppCompatActivity() {
         ref = FirebaseDatabase.getInstance().getReference("inbox")
         val idInbox  = ref.push().key.toString()
         val addData = Inbox(idInbox, SP.getString("id_pengguna", "").toString(),
-            SP.getString("id_identitas", "").toString(), "Pengajuan Identitas",
-            "Identitas berhasil terkirim. Harap tunggu persetujuan dari Admin sebelum melakukan transaksi.")
+            SP.getString("id_identitas", "").toString(), "-", "Pengajuan Identitas",
+            "Identitas berhasil terkirim. Harap tunggu persetujuan dari Admin sebelum " +
+                    "melakukan transaksi.", "identitas")
         ref.child(idInbox).setValue(addData)
 
         val editor = SP.edit()

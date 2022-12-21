@@ -1,4 +1,4 @@
-package com.example.rentalev
+package com.example.rentalev.view
 
 import android.content.Context
 import android.content.DialogInterface
@@ -8,9 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.example.rentalev.R
 import com.example.rentalev.model.Identitas
 import com.example.rentalev.model.Pengguna
-import com.example.rentalev.pengguna.ActivityUtama
+import com.example.rentalev.view.pengguna.ActivityUtama
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -89,17 +90,16 @@ class ActivityLogin : AppCompatActivity() {
                                                     editor.putString("status", ut.status)
                                                     editor.apply()
 
-//                                                    if(us.level == "Pengguna") {
-                                                    btnLogin.isClickable = false
-                                                    val intent = Intent(this@ActivityLogin, ActivityUtama::class.java)
-                                                    startActivity(intent)
-                                                    finish()
-//                                                     } else if(us.level == "Admin") {
+                                                    if(us.level == "Pengguna") {
+                                                        btnLogin.isClickable = false
+                                                        startActivity(Intent(this@ActivityLogin, ActivityUtama::class.java))
+                                                        finish()
+                                                    } else {
 //                                                    btnLogin.isClickable = false
 //                                                    val intent = Intent(this@ActivityLogin, com.example.projectskripsi.admin.ActivityUtama::class.java)
 //                                                    startActivity(intent)
 //                                                    finish()
-//                                                    }
+                                                    }
                                                 }
                                             }
                                         }

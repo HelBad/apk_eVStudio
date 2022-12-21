@@ -1,10 +1,11 @@
-package com.example.rentalev
+package com.example.rentalev.view
 
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import com.example.rentalev.R
 import com.example.rentalev.model.Identitas
 import com.example.rentalev.model.Pengguna
 import com.google.firebase.database.DataSnapshot

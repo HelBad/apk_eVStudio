@@ -1,4 +1,4 @@
-package com.example.rentalev.pengguna
+package com.example.rentalev.view.pengguna
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface
@@ -7,10 +7,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.rentalev.R
-import com.example.rentalev.pengguna.fragment.FragmentBeranda
-import com.example.rentalev.pengguna.fragment.FragmentInbox
-import com.example.rentalev.pengguna.fragment.FragmentPesanan
-import com.example.rentalev.pengguna.fragment.FragmentProfil
+import com.example.rentalev.view.pengguna.fragment.FragmentBeranda
+import com.example.rentalev.view.pengguna.fragment.FragmentInbox
+import com.example.rentalev.view.pengguna.fragment.FragmentPesanan
+import com.example.rentalev.view.pengguna.fragment.FragmentProfil
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ActivityUtama : AppCompatActivity() {
@@ -46,12 +46,12 @@ class ActivityUtama : AppCompatActivity() {
 
         bottomNav = findViewById(R.id.bottomNav)
         alertDialog = AlertDialog.Builder(this)
-//        if (intent.getStringExtra("pesanan").toString() == "true") {
-//            replaceFragment(FragmentPesanan())
-//            bottomNav.selectedItemId = R.id.pesanan
-//        } else {
+        if (intent.getStringExtra("pesanan").toString() == "true") {
+            replaceFragment(FragmentPesanan())
+            bottomNav.selectedItemId = R.id.pesanan
+        } else {
             replaceFragment(FragmentBeranda())
-//        }
+        }
         bottomNav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 

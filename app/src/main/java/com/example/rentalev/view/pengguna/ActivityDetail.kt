@@ -1,8 +1,12 @@
-package com.example.rentalev.pengguna
+package com.example.rentalev.view.pengguna
 
+import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import com.example.rentalev.R
 import com.example.rentalev.model.Produk
 import com.google.firebase.database.DataSnapshot
@@ -15,6 +19,8 @@ import java.text.DecimalFormat
 import java.text.NumberFormat
 
 class ActivityDetail : AppCompatActivity() {
+    lateinit var SP: SharedPreferences
+    lateinit var alertDialog: AlertDialog.Builder
     var formatNumber: NumberFormat = DecimalFormat("#,###")
     var idProduk = ""
 
@@ -22,18 +28,41 @@ class ActivityDetail : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
+        SP = applicationContext.getSharedPreferences("Pengguna", Context.MODE_PRIVATE)
+        alertDialog = AlertDialog.Builder(this)
         setDetail()
+
         btnOrder.setOnClickListener {
-            val intent = Intent(this@ActivityDetail, ActivityCheckout::class.java)
-            intent.putExtra("id_produk", idProduk)
-            intent.putExtra("pesanan", "order")
-            startActivity(intent)
+            if(SP.getString("status", "") == "approve") {
+                val intent = Intent(this@ActivityDetail, ActivityCheckout::class.java)
+                intent.putExtra("id_produk", idProduk)
+                intent.putExtra("pesanan", "order")
+                startActivity(intent)
+            } else {
+                alertDialog.setMessage("Ajukan identitas anda di halaman profil, sebelum melakukan transaksi")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", object: DialogInterface.OnClickListener {
+                        override fun onClick(dialog: DialogInterface, id:Int) {
+                            dialog.cancel()
+                        }
+                    }).create().show()
+            }
         }
         btnBooking.setOnClickListener {
-            val intent = Intent(this@ActivityDetail, ActivityCheckout::class.java)
-            intent.putExtra("id_produk", idProduk)
-            intent.putExtra("pesanan", "booking")
-            startActivity(intent)
+            if(SP.getString("status", "") == "approve") {
+                val intent = Intent(this@ActivityDetail, ActivityCheckout::class.java)
+                intent.putExtra("id_produk", idProduk)
+                intent.putExtra("pesanan", "booking")
+                startActivity(intent)
+            } else {
+                alertDialog.setMessage("Ajukan identitas anda di halaman profil, sebelum melakukan transaksi")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", object: DialogInterface.OnClickListener {
+                        override fun onClick(dialog: DialogInterface, id:Int) {
+                            dialog.cancel()
+                        }
+                    }).create().show()
+            }
         }
     }
 

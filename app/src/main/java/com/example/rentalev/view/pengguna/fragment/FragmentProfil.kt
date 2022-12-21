@@ -1,4 +1,4 @@
-package com.example.rentalev.pengguna.fragment
+package com.example.rentalev.view.pengguna.fragment
 
 import android.content.Context
 import android.content.DialogInterface
@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.example.rentalev.ActivityLogin
+import com.example.rentalev.view.ActivityLogin
 import com.example.rentalev.R
-import com.example.rentalev.pengguna.ActivityProfil
+import com.example.rentalev.view.pengguna.ActivityProfil
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_profil.*

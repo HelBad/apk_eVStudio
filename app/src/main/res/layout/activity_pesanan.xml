@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.pengguna.ActivityCheckout">
+    tools:context=".view.pengguna.ActivityPesanan">
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarCo"
+        android:id="@+id/toolbarPesan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        app:title="Checkout" />
+        app:title="Detail Pesanan" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
                 android:layout_margin="15dp"
                 android:orientation="horizontal">
                 <ImageView
-                    android:id="@+id/imgCo"
+                    android:id="@+id/imgPesan"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_marginRight="10dp"
@@ -43,7 +43,7 @@
                     android:layout_gravity="center_vertical"
                     android:orientation="vertical">
                     <TextView
-                        android:id="@+id/namaprodukCo"
+                        android:id="@+id/namaprodukPesan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
@@ -54,7 +54,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/hargaCo"
+                        android:id="@+id/hargaPesan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
@@ -64,60 +64,16 @@
                         android:textColor="@color/colorAccent"
                         android:textStyle="bold"/>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/jumlahPesan"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="5dp"
-                            android:gravity="center_vertical"
-                            android:text="Jumlah :"
-                            android:textSize="15dp"
-                            android:textColor="@color/colorGrey"
-                            android:textStyle="bold"/>
-
-                        <ImageView
-                            android:id="@+id/minJumlahCo"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center_vertical"
-                            android:background="@drawable/ic_kurang"
-                            android:backgroundTint="@color/colorPrimary" />
-
-                        <EditText
-                            android:id="@+id/jumlahCo"
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/colorAccent"
-                            android:text="1"
-                            android:textAlignment="center"
-                            android:textColor="@android:color/black"
-                            android:textSize="15dp"
-                            android:textStyle="bold"
-                            android:editable="false"/>
-
-                        <ImageView
-                            android:id="@+id/plusJumlahCo"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center_vertical"
-                            android:background="@drawable/ic_tambah"
-                            android:backgroundTint="@color/colorPrimary" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginBottom="5dp"
-                            android:gravity="center_vertical"
-                            android:text="unit"
-                            android:textSize="15dp"
-                            android:textColor="@android:color/black"
-                            android:textStyle="bold"/>
-                    </LinearLayout>
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center_vertical"
+                        android:text="Jumlah"
+                        android:textSize="15dp"
+                        android:textColor="@color/colorGrey"
+                        android:textStyle="bold"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -132,185 +88,135 @@
                 android:textStyle="bold" />
 
             <LinearLayout
-                android:id="@+id/layidCo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="10dp"
-                    app:srcCompat="@drawable/ic_orang" />
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Identitas"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/idCo"
+                <TextView
+                    android:id="@+id/idPesan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical"
                     android:background="@android:color/white"
-                    android:text="Nama (NIK)"
                     android:textColor="@android:color/black"
                     android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:editable="false"/>
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/laylokasiCo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="10dp"
-                    app:srcCompat="@drawable/ic_lokasi" />
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Lokasi"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/lokasiCo"
+                <TextView
+                    android:id="@+id/lokasiPesan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical"
                     android:background="@android:color/white"
-                    android:hint="Masukkan lokasi pengiriman"
-                    android:inputType="text"
                     android:textColor="@android:color/black"
                     android:textSize="15dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/laytglCo"
+                android:id="@+id/laytglPesan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="10dp"
-                    app:srcCompat="@drawable/ic_kalender" />
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Tgl Booking"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/tglCo"
+                <TextView
+                    android:id="@+id/tglPesan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical"
                     android:background="@android:color/white"
-                    android:hint="Tanggal booking"
                     android:textColor="@android:color/black"
                     android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:editable="false"/>
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/laywaktuCo"
+                android:id="@+id/laywaktuPesan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="10dp"
-                    app:srcCompat="@drawable/ic_waktu" />
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Jam Booking"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/waktuCo"
+                <TextView
+                    android:id="@+id/waktuPesan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical"
                     android:background="@android:color/white"
-                    android:hint="Waktu booking"
                     android:textColor="@android:color/black"
                     android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:editable="false"/>
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/laydurasiCo"
+                android:id="@+id/laydurasiPesan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    app:srcCompat="@drawable/ic_timer" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:gravity="center_vertical"
-                        android:text="Durasi sewa :"
-                        android:textSize="15dp"
-                        android:textColor="@color/colorGrey"
-                        android:textStyle="bold"/>
+                    android:text="Durasi Sewa"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/minDurasiCo"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center_vertical"
-                        android:background="@drawable/ic_kurang"
-                        android:backgroundTint="@color/colorPrimary" />
-
-                    <EditText
-                        android:id="@+id/durasiCo"
-                        android:layout_width="40dp"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/colorAccent"
-                        android:text="1"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/black"
-                        android:textSize="15dp"
-                        android:textStyle="bold"
-                        android:editable="false"/>
-
-                    <ImageView
-                        android:id="@+id/plusDurasiCo"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center_vertical"
-                        android:background="@drawable/ic_tambah"
-                        android:backgroundTint="@color/colorPrimary" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:gravity="center_vertical"
-                        android:text="hari"
-                        android:textSize="15dp"
-                        android:textColor="@android:color/black"
-                        android:textStyle="bold"/>
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/durasiPesan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:background="@android:color/white"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <RelativeLayout
@@ -331,7 +237,7 @@
                 android:textStyle="bold" />
 
             <LinearLayout
-                android:id="@+id/layjaminanCo"
+                android:id="@+id/layjaminanPesan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -346,44 +252,19 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:text=":"
-                    android:textColor="@color/colorGrey"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-
-                <RadioGroup
-                    android:id="@+id/jaminanCo"
+                    android:id="@+id/jaminanPesan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <RadioButton
-                        android:id="@+id/jaminanCo1"
-                        android:layout_width="80dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginRight="10dp"
-                        android:text="KTP"
-                        android:textColor="@android:color/black"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-
-                    <RadioButton
-                        android:id="@+id/jaminanCo2"
-                        android:layout_width="80dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center_vertical"
-                        android:text="SIM"
-                        android:textColor="@android:color/black"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-                </RadioGroup>
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:background="@android:color/white"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/laymetodeCo"
+                android:id="@+id/laymetodePesan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -398,29 +279,15 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:text=":"
-                    android:textColor="@color/colorGrey"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-
-                <RadioGroup
-                    android:id="@+id/metodeCo"
+                    android:id="@+id/metodePesan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <RadioButton
-                        android:id="@+id/metodeCo1"
-                        android:layout_width="match_parent"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center_vertical"
-                        android:text="Tunai"
-                        android:textColor="@android:color/black"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-                </RadioGroup>
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:background="@android:color/white"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <RelativeLayout
@@ -456,7 +323,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/subtotalCo"
+                    android:id="@+id/subtotalPesan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"
@@ -479,7 +346,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/adminCo"
+                    android:id="@+id/adminPesan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"
@@ -502,7 +369,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/ongkirCo"
+                    android:id="@+id/ongkirPesan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"
@@ -525,7 +392,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/totalCo"
+                    android:id="@+id/totalPesan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"
@@ -539,19 +406,6 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
                 android:background="#8F8B8B" />
-
-            <Button
-                android:id="@+id/btnPesanCo"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="15dp"
-                android:background="@drawable/dec_button"
-                android:backgroundTint="@color/colorPrimary"
-                android:text="BUAT PESANAN"
-                android:textColor="@android:color/white"
-                android:textSize="15dp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
