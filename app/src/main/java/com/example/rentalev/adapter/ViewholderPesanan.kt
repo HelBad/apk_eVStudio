@@ -5,6 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rentalev.R
+import com.example.rentalev.model.Pembayaran
 import com.example.rentalev.model.Pesanan
 import com.example.rentalev.model.Produk
 import com.google.firebase.database.DataSnapshot
@@ -36,16 +37,28 @@ class ViewholderPesanan(itemView: View): RecyclerView.ViewHolder(itemView) {
         val statusPesanan = mView.findViewById(R.id.statusPesanan) as TextView
         val imgPesanan = mView.findViewById(R.id.imgPesanan) as ImageView
 
-        val query = FirebaseDatabase.getInstance().getReference("produk")
+        val queryProduk = FirebaseDatabase.getInstance().getReference("produk")
             .orderByChild("id_produk").equalTo(pesanan.id_produk)
-        query.addListenerForSingleValueEvent(object: ValueEventListener {
+        queryProduk.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(datasnapshot: DataSnapshot) {
                 for (snapshot1 in datasnapshot.children) {
-                    val allocation = snapshot1.getValue(Produk::class.java)
-                    statusPesanan.text = "Status : " + pesanan.status_pesanan
-                    namaprodukPesanan.text = allocation!!.nama_produk
-                    hargaprodukPesanan.text = "Rp. " + formatNumber.format(allocation.harga.toInt()) + ",00"
-                    Picasso.get().load(allocation.gambar).into(imgPesanan)
+                    val h = snapshot1.getValue(Produk::class.java)
+
+                    val queryBayar = FirebaseDatabase.getInstance().getReference("pembayaran")
+                        .orderByChild("id_pesanan").equalTo(pesanan.id_pesanan)
+                    queryBayar.addListenerForSingleValueEvent(object: ValueEventListener {
+                        override fun onDataChange(datasnapshot: DataSnapshot) {
+                            for (snapshot2 in datasnapshot.children) {
+                                val i = snapshot2.getValue(Pembayaran::class.java)
+
+                                statusPesanan.text = "Status : " + pesanan.status_pesanan
+                                namaprodukPesanan.text = h!!.nama_produk
+                                Picasso.get().load(h.gambar).into(imgPesanan)
+                                hargaprodukPesanan.text = "Rp. " + formatNumber.format(i!!.total_bayar.toInt()) + ",00"
+                            }
+                        }
+                        override fun onCancelled(databaseError: DatabaseError) {}
+                    })
                 }
             }
             override fun onCancelled(databaseError: DatabaseError) {}

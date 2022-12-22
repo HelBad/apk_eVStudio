@@ -32,9 +32,13 @@ class ViewholderBeranda(itemView: View): RecyclerView.ViewHolder(itemView) {
         val imgProduk = mView.findViewById(R.id.imgProduk) as ImageView
 
         namaProduk.text = produk.nama_produk
-        hargaProduk.text = "Rp. " + formatNumber.format(produk.harga.toInt()) + ",00"
         stokProduk.text = "tersisa : " + produk.stok
         Picasso.get().load(produk.gambar).into(imgProduk)
+        if(produk.kategori == "sewa") {
+            hargaProduk.text = "Rp. " + formatNumber.format(produk.harga.toInt()) + ",00 / hari"
+        } else {
+            hargaProduk.text = "Rp. " + formatNumber.format(produk.harga.toInt()) + ",00"
+        }
     }
 
     interface ClickListener {

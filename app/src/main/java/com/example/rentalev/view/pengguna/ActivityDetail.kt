@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import com.example.rentalev.R
 import com.example.rentalev.model.Produk
@@ -63,6 +64,17 @@ class ActivityDetail : AppCompatActivity() {
                         }
                     }).create().show()
             }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if(intent.getStringExtra("kategori").toString() == "sewa") {
+            btnOrder.visibility = View.GONE
+            btnBooking.visibility = View.VISIBLE
+        } else {
+            btnOrder.visibility = View.VISIBLE
+            btnBooking.visibility = View.GONE
         }
     }
 

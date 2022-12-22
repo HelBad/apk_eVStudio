@@ -7,15 +7,17 @@ class Produk {
     lateinit var harga: String
     lateinit var stok: String
     lateinit var gambar: String
+    lateinit var kategori: String
 
     constructor() {}
     constructor(id_produk: String, nama_produk: String, deskripsi: String, harga: String,
-                stok: String, gambar: String) {
+                stok: String, gambar: String, kategori: String) {
         this.id_produk = id_produk
         this.nama_produk = nama_produk
         this.deskripsi = deskripsi
         this.harga = harga
         this.stok = stok
         this.gambar = gambar
+        this.kategori = kategori
     }
 }
