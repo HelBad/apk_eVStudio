@@ -43,7 +43,7 @@ class ActivityLogin : AppCompatActivity() {
             Toast.makeText(this, "Email kosong", Toast.LENGTH_SHORT).show()
             return false
         }
-        if(emailLogin.text.toString() == "") {
+        if(passwordLogin.text.toString() == "") {
             Toast.makeText(this, "Password kosong", Toast.LENGTH_SHORT).show()
             return false
         }
