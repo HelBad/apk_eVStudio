@@ -51,7 +51,6 @@ class ActivityLogin : AppCompatActivity() {
     }
 
     private fun login() {
-        btnLogin.isClickable = false
         Toast.makeText(this@ActivityLogin, "Mohon Tunggu...", Toast.LENGTH_SHORT).show()
         FirebaseDatabase.getInstance().getReference("pengguna").orderByChild("email")
             .equalTo(emailLogin.text.toString()).addListenerForSingleValueEvent(object :
@@ -71,39 +70,37 @@ class ActivityLogin : AppCompatActivity() {
                                 editor.putString("level", us.level)
                                 editor.apply()
 
-                                FirebaseDatabase.getInstance().getReference("identitas")
-                                    .orderByChild("id_pengguna").equalTo(us.id_pengguna)
-                                    .addListenerForSingleValueEvent(object : ValueEventListener {
-                                        override fun onCancelled(p0: DatabaseError) {}
-                                        override fun onDataChange(p0: DataSnapshot) {
-                                            if (p0.exists()) {
-                                                for (i in p0.children) {
-                                                    val ut = i.getValue(Identitas::class.java)
-                                                    val editor = SP.edit()
-                                                    editor.putString("id_identitas", ut!!.id_identitas)
-                                                    editor.putString("nik", ut.nik)
-                                                    editor.putString("tempat", ut.tempat)
-                                                    editor.putString("tanggal", ut.tanggal)
-                                                    editor.putString("gender", ut.gender)
-                                                    editor.putString("alamat", ut.alamat)
-                                                    editor.putString("foto", ut.foto)
-                                                    editor.putString("status", ut.status)
-                                                    editor.apply()
+                                if(us.level == "Pengguna") {
+                                    FirebaseDatabase.getInstance().getReference("identitas")
+                                        .orderByChild("id_pengguna").equalTo(us.id_pengguna)
+                                        .addListenerForSingleValueEvent(object : ValueEventListener {
+                                            override fun onCancelled(p0: DatabaseError) {}
+                                            override fun onDataChange(p0: DataSnapshot) {
+                                                if (p0.exists()) {
+                                                    for (i in p0.children) {
+                                                        val ut = i.getValue(Identitas::class.java)
+                                                        val editor = SP.edit()
+                                                        editor.putString("id_identitas", ut!!.id_identitas)
+                                                        editor.putString("nik", ut.nik)
+                                                        editor.putString("tempat", ut.tempat)
+                                                        editor.putString("tanggal", ut.tanggal)
+                                                        editor.putString("gender", ut.gender)
+                                                        editor.putString("alamat", ut.alamat)
+                                                        editor.putString("foto", ut.foto)
+                                                        editor.putString("status", ut.status)
+                                                        editor.apply()
 
-                                                    if(us.level == "Pengguna") {
-                                                        btnLogin.isClickable = false
                                                         startActivity(Intent(this@ActivityLogin, ActivityUtama::class.java))
                                                         finish()
-                                                    } else {
-//                                                    btnLogin.isClickable = false
-//                                                    val intent = Intent(this@ActivityLogin, com.example.projectskripsi.admin.ActivityUtama::class.java)
-//                                                    startActivity(intent)
-//                                                    finish()
                                                     }
                                                 }
                                             }
-                                        }
-                                    })
+                                        })
+                                } else {
+                                    val intent = Intent(this@ActivityLogin, com.example.rentalev.view.admin.ActivityUtama::class.java)
+                                    startActivity(intent)
+                                    finish()
+                                }
                             } else {
                                 btnLogin.isClickable = true
                                 Toast.makeText(this@ActivityLogin, "Password salah", Toast.LENGTH_SHORT).show()

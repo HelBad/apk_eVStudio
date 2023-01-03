@@ -7,17 +7,17 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
-    tools:context=".view.pengguna.fragment.FragmentInbox">
+    tools:context=".view.admin.fragment.FragmentProfil">
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarInbox"
+        android:id="@+id/toolbarAkun"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        app:title="Inbox" />
+        app:title="Profil" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerInbox"
+        android:id="@+id/recyclerAkun"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/list_inbox"/>
