@@ -10,7 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rentalev.R
-import com.example.rentalev.adapter.ViewholderPesanan
+import com.example.rentalev.adapter.ViewholderPesananAdmin
 import com.example.rentalev.model.Pesanan
 import com.example.rentalev.view.admin.ActivityPesanan
 import com.firebase.ui.database.FirebaseRecyclerAdapter
@@ -64,18 +64,18 @@ class FragmentPesanan : Fragment() {
     }
 
     private fun listData(query: Query){
-        val firebaseRecyclerAdapter = object: FirebaseRecyclerAdapter<Pesanan, ViewholderPesanan>(
+        val firebaseRecyclerAdapter = object: FirebaseRecyclerAdapter<Pesanan, ViewholderPesananAdmin>(
             Pesanan::class.java,
-            R.layout.list_pesanan,
-            ViewholderPesanan::class.java,
+            R.layout.list_pesanan_admin,
+            ViewholderPesananAdmin::class.java,
             query
         ) {
-            override fun populateViewHolder(viewHolder: ViewholderPesanan, model: Pesanan, position:Int) {
+            override fun populateViewHolder(viewHolder: ViewholderPesananAdmin, model: Pesanan, position:Int) {
                 viewHolder.setDetails(model)
             }
-            override fun onCreateViewHolder(parent:ViewGroup, viewType:Int): ViewholderPesanan {
+            override fun onCreateViewHolder(parent:ViewGroup, viewType:Int): ViewholderPesananAdmin {
                 val viewHolder = super.onCreateViewHolder(parent, viewType)
-                viewHolder.setOnClickListener(object: ViewholderPesanan.ClickListener {
+                viewHolder.setOnClickListener(object: ViewholderPesananAdmin.ClickListener {
                     override fun onItemClick(view:View, position:Int) {
                         val intent = Intent(view.context, ActivityPesanan::class.java)
                         intent.putExtra("id_pesanan", viewHolder.pesanan.id_pesanan)

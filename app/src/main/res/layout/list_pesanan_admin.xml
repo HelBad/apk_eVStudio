@@ -49,18 +49,8 @@
                 android:id="@+id/hargaPesanan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
                 android:text="Harga"
                 android:textColor="@color/colorAccent"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/statusPesanan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Status"
-                android:textColor="@color/colorPrimary"
                 android:textSize="15dp"
                 android:textStyle="bold" />
         </LinearLayout>

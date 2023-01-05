@@ -9,17 +9,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.rentalev.R
 import com.example.rentalev.adapter.ViewholderPesanan
 import com.example.rentalev.model.Pesanan
 import com.example.rentalev.view.pengguna.ActivityPesanan
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.fragment_pesanan.*
 
 class FragmentPesanan : Fragment() {
     lateinit var mLayoutManager: LinearLayoutManager
-    lateinit var mRecyclerView: RecyclerView
     lateinit var SP: SharedPreferences
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -32,9 +31,8 @@ class FragmentPesanan : Fragment() {
         SP = requireActivity().applicationContext.getSharedPreferences("Pengguna", Context.MODE_PRIVATE)
 
         mLayoutManager = LinearLayoutManager(requireActivity())
-        mRecyclerView = requireView().findViewById(R.id.recyclerPesanan)
-        mRecyclerView.setHasFixedSize(true)
-        mRecyclerView.layoutManager = mLayoutManager
+        recyclerPesanan.setHasFixedSize(true)
+        recyclerPesanan.layoutManager = mLayoutManager
     }
 
     override fun onStart() {
@@ -65,6 +63,6 @@ class FragmentPesanan : Fragment() {
                 return viewHolder
             }
         }
-        mRecyclerView.adapter = firebaseRecyclerAdapter
+        recyclerPesanan.adapter = firebaseRecyclerAdapter
     }
 }

@@ -14,7 +14,7 @@ import java.text.DecimalFormat
 import java.text.NumberFormat
 
 class ActivityPesanan : AppCompatActivity() {
-    var formatNumber: NumberFormat = DecimalFormat("#,###.00")
+    var formatNumber: NumberFormat = DecimalFormat("#,###")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +53,7 @@ class ActivityPesanan : AppCompatActivity() {
                 for (snapshot3 in datasnapshot.children) {
                     val j = snapshot3.getValue(Produk::class.java)
                     namaprodukPesan.text = j!!.nama_produk
-                    hargaPesan.text = "Rp. " + formatNumber.format(j.harga.toInt())
+                    hargaPesan.text = "Rp. " + formatNumber.format(j.harga.toInt()) + ",00"
                 }
             }
             override fun onCancelled(databaseError: DatabaseError) {}
@@ -65,9 +65,10 @@ class ActivityPesanan : AppCompatActivity() {
             override fun onDataChange(datasnapshot: DataSnapshot) {
                 for (snapshot4 in datasnapshot.children) {
                     val k = snapshot4.getValue(Pesanan::class.java)
-                    jumlahPesan.text = "Jumlah : " + k!!.jumlah
+                    invoicePesan.text = ": " + k!!.id_pesanan
+                    jumlahPesan.text = "Jumlah : " + k.jumlah
                     lokasiPesan.text = ": " + k.lokasi
-                    subtotalPesan.text = ": Rp. " + formatNumber.format(k.subtotal.toInt())
+                    subtotalPesan.text = ": Rp. " + formatNumber.format(k.subtotal.toInt()) + ",00"
                     if(k.tgl_pesan == "") {
                         laytglPesan.visibility = View.GONE
                         laydurasiPesan.visibility = View.GONE
@@ -89,9 +90,9 @@ class ActivityPesanan : AppCompatActivity() {
                 for (snapshot5 in datasnapshot.children) {
                     val l = snapshot5.getValue(Pembayaran::class.java)
                     metodePesan.text = ": " + l!!.metode
-                    adminPesan.text = ": Rp. " + formatNumber.format(l.admin.toInt())
-                    ongkirPesan.text = ": Rp. " + formatNumber.format(l.ongkir.toInt())
-                    totalPesan.text = ": Rp. " + formatNumber.format(l.total_bayar.toInt())
+                    adminPesan.text = ": Rp. " + formatNumber.format(l.admin.toInt()) + ",00"
+                    ongkirPesan.text = ": Rp. " + formatNumber.format(l.ongkir.toInt()) + ",00"
+                    totalPesan.text = ": Rp. " + formatNumber.format(l.total_bayar.toInt()) + ",00"
                     if(l.jaminan == "") {
                         layjaminanPesan.visibility = View.GONE
                     } else {

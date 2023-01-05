@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso
 import java.text.DecimalFormat
 import java.text.NumberFormat
 
-class ViewholderPesanan(itemView: View): RecyclerView.ViewHolder(itemView) {
+class ViewholderPesananAdmin(itemView: View): RecyclerView.ViewHolder(itemView) {
     private var mView: View = itemView
     private var mClickListener: ClickListener? = null
     var pesanan = Pesanan()
@@ -35,7 +35,6 @@ class ViewholderPesanan(itemView: View): RecyclerView.ViewHolder(itemView) {
         val produkPesanan = mView.findViewById(R.id.produkPesanan) as TextView
         val invoicePesanan = mView.findViewById(R.id.invoicePesanan) as TextView
         val hargaPesanan = mView.findViewById(R.id.hargaPesanan) as TextView
-        val statusPesanan = mView.findViewById(R.id.statusPesanan) as TextView
         val imgPesanan = mView.findViewById(R.id.imgPesanan) as ImageView
 
         val queryProduk = FirebaseDatabase.getInstance().getReference("produk")
@@ -56,7 +55,6 @@ class ViewholderPesanan(itemView: View): RecyclerView.ViewHolder(itemView) {
                                 produkPesanan.text = h!!.nama_produk
                                 Picasso.get().load(h.gambar).into(imgPesanan)
                                 invoicePesanan.text = pesanan.id_pesanan
-                                statusPesanan.text = "Status : " + pesanan.status_pesanan
                             }
                         }
                         override fun onCancelled(databaseError: DatabaseError) {}

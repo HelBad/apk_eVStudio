@@ -10,31 +10,12 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_pesanan.imgPesan
-import kotlinx.android.synthetic.main.activity_pesanan.adminPesan
-import kotlinx.android.synthetic.main.activity_pesanan.durasiPesan
-import kotlinx.android.synthetic.main.activity_pesanan.hargaPesan
-import kotlinx.android.synthetic.main.activity_pesanan.idPesan
-import kotlinx.android.synthetic.main.activity_pesanan.jaminanPesan
-import kotlinx.android.synthetic.main.activity_pesanan.jumlahPesan
-import kotlinx.android.synthetic.main.activity_pesanan.laydurasiPesan
-import kotlinx.android.synthetic.main.activity_pesanan.layjaminanPesan
-import kotlinx.android.synthetic.main.activity_pesanan.laytglPesan
-import kotlinx.android.synthetic.main.activity_pesanan.laywaktuPesan
-import kotlinx.android.synthetic.main.activity_pesanan.lokasiPesan
-import kotlinx.android.synthetic.main.activity_pesanan.metodePesan
-import kotlinx.android.synthetic.main.activity_pesanan.namaprodukPesan
-import kotlinx.android.synthetic.main.activity_pesanan.ongkirPesan
-import kotlinx.android.synthetic.main.activity_pesanan.subtotalPesan
-import kotlinx.android.synthetic.main.activity_pesanan.tglPesan
-import kotlinx.android.synthetic.main.activity_pesanan.totalPesan
-import kotlinx.android.synthetic.main.activity_pesanan.waktuPesan
-import kotlinx.android.synthetic.main.activity_pesanan_admin.*
+import kotlinx.android.synthetic.main.activity_pesanan.*
 import java.text.DecimalFormat
 import java.text.NumberFormat
 
 class ActivityPesanan : AppCompatActivity() {
-    var formatNumber: NumberFormat = DecimalFormat("#,###.00")
+    var formatNumber: NumberFormat = DecimalFormat("#,###")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
