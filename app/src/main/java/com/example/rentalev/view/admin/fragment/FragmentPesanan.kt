@@ -1,60 +1,93 @@
 package com.example.rentalev.view.admin.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rentalev.R
+import com.example.rentalev.adapter.ViewholderPesanan
+import com.example.rentalev.model.Pesanan
+import com.example.rentalev.view.admin.ActivityPesanan
+import com.firebase.ui.database.FirebaseRecyclerAdapter
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
+import kotlinx.android.synthetic.main.fragment_pesanan_admin.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [FragmentPesanan.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FragmentPesanan : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    lateinit var mLayoutManager: LinearLayoutManager
+    lateinit var ref: DatabaseReference
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_pesanan_admin, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FragmentPesanan.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentPesanan().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        ref = FirebaseDatabase.getInstance().getReference("pesanan")
+
+        mLayoutManager = LinearLayoutManager(requireActivity())
+        recyclerPesanan.setHasFixedSize(true)
+        recyclerPesanan.layoutManager = mLayoutManager
+        pilihStatus()
+    }
+
+    private fun pilihStatus() {
+        val pilihStatus = arrayOf("Menunggu", "Disetujui", "Ditolak")
+        spinnerPesanan.adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, pilihStatus)
+        spinnerPesanan.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                statusPesanan.text = pilihStatus[position]
+                loadData()
             }
+        }
+    }
+
+    private fun loadData() {
+        if(statusPesanan.text.toString() == "Menunggu") {
+            val query = ref.orderByChild("status_pesanan").equalTo("pending")
+            listData(query)
+        } else if(statusPesanan.text.toString() == "Disetujui") {
+            val query = ref.orderByChild("status_pesanan").equalTo("approve")
+            listData(query)
+        } else if(statusPesanan.text.toString() == "Ditolak") {
+            val query = ref.orderByChild("status_pesanan").equalTo("reject")
+            listData(query)
+        }
+    }
+
+    private fun listData(query: Query){
+        val firebaseRecyclerAdapter = object: FirebaseRecyclerAdapter<Pesanan, ViewholderPesanan>(
+            Pesanan::class.java,
+            R.layout.list_pesanan,
+            ViewholderPesanan::class.java,
+            query
+        ) {
+            override fun populateViewHolder(viewHolder: ViewholderPesanan, model: Pesanan, position:Int) {
+                viewHolder.setDetails(model)
+            }
+            override fun onCreateViewHolder(parent:ViewGroup, viewType:Int): ViewholderPesanan {
+                val viewHolder = super.onCreateViewHolder(parent, viewType)
+                viewHolder.setOnClickListener(object: ViewholderPesanan.ClickListener {
+                    override fun onItemClick(view:View, position:Int) {
+                        val intent = Intent(view.context, ActivityPesanan::class.java)
+                        intent.putExtra("id_pesanan", viewHolder.pesanan.id_pesanan)
+                        intent.putExtra("id_pengguna", viewHolder.pesanan.id_pengguna)
+                        intent.putExtra("id_produk", viewHolder.pesanan.id_produk)
+                        startActivity(intent)
+                    }
+                    override fun onItemLongClick(view:View, position:Int) {}
+                })
+                return viewHolder
+            }
+        }
+        recyclerPesanan.adapter = firebaseRecyclerAdapter
     }
 }

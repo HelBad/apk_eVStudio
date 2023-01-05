@@ -1,20 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
     tools:context=".view.admin.fragment.FragmentProfil">
-    <androidx.appcompat.widget.Toolbar
+    <RelativeLayout
         android:id="@+id/toolbarAkun"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        app:title="Profil" />
+        android:elevation="5dp"
+        android:background="@color/colorPrimary">
+        <ImageView
+            android:id="@+id/imgbarAkun"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginHorizontal="15dp"
+            android:src="@drawable/ic_logout"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/imgbarAkun"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/dec_border">
+            <Spinner
+                android:id="@+id/spinnerAkun"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="@android:color/black"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/statusAkun"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="45dp"
+                android:background="@color/colorGreen"
+                android:hint="Status Pengajuan Identitas"
+                android:textColor="@android:color/black"
+                android:textSize="15dp" />
+        </RelativeLayout>
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerAkun"

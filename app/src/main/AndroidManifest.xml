@@ -18,6 +18,20 @@
         android:theme="@style/AppTheme"
         tools:targetApi="33">
         <activity
+            android:name=".view.admin.ActivityPesanan"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".view.admin.ActivityEdit"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".view.admin.ActivityUtama"
             android:exported="false">
             <meta-data

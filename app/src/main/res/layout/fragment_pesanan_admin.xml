@@ -1,14 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
     tools:context=".view.admin.fragment.FragmentPesanan">
+    <RelativeLayout
+        android:id="@+id/toolbarPesanan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:elevation="5dp"
+        android:background="@color/colorPrimary">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/dec_border">
+            <Spinner
+                android:id="@+id/spinnerPesanan"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="@android:color/black"
+                android:gravity="center_vertical" />
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+            <TextView
+                android:id="@+id/statusPesanan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="45dp"
+                android:background="@color/colorGreen"
+                android:hint="Status Pesanan"
+                android:textColor="@android:color/black"
+                android:textSize="15dp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerPesanan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+        tools:listitem="@layout/list_pesanan"/>
+</LinearLayout>

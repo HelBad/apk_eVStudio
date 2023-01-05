@@ -1,4 +1,4 @@
-package com.example.rentalev.view.pengguna
+package com.example.rentalev.view.admin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,7 +9,27 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.activity_pesanan.*
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_pesanan.imgPesan
+import kotlinx.android.synthetic.main.activity_pesanan.adminPesan
+import kotlinx.android.synthetic.main.activity_pesanan.durasiPesan
+import kotlinx.android.synthetic.main.activity_pesanan.hargaPesan
+import kotlinx.android.synthetic.main.activity_pesanan.idPesan
+import kotlinx.android.synthetic.main.activity_pesanan.jaminanPesan
+import kotlinx.android.synthetic.main.activity_pesanan.jumlahPesan
+import kotlinx.android.synthetic.main.activity_pesanan.laydurasiPesan
+import kotlinx.android.synthetic.main.activity_pesanan.layjaminanPesan
+import kotlinx.android.synthetic.main.activity_pesanan.laytglPesan
+import kotlinx.android.synthetic.main.activity_pesanan.laywaktuPesan
+import kotlinx.android.synthetic.main.activity_pesanan.lokasiPesan
+import kotlinx.android.synthetic.main.activity_pesanan.metodePesan
+import kotlinx.android.synthetic.main.activity_pesanan.namaprodukPesan
+import kotlinx.android.synthetic.main.activity_pesanan.ongkirPesan
+import kotlinx.android.synthetic.main.activity_pesanan.subtotalPesan
+import kotlinx.android.synthetic.main.activity_pesanan.tglPesan
+import kotlinx.android.synthetic.main.activity_pesanan.totalPesan
+import kotlinx.android.synthetic.main.activity_pesanan.waktuPesan
+import kotlinx.android.synthetic.main.activity_pesanan_admin.*
 import java.text.DecimalFormat
 import java.text.NumberFormat
 
@@ -18,7 +38,7 @@ class ActivityPesanan : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pesanan)
+        setContentView(R.layout.activity_pesanan_admin)
 
         setDetail()
     }
@@ -53,7 +73,8 @@ class ActivityPesanan : AppCompatActivity() {
                 for (snapshot3 in datasnapshot.children) {
                     val j = snapshot3.getValue(Produk::class.java)
                     namaprodukPesan.text = j!!.nama_produk
-                    hargaPesan.text = "Rp. " + formatNumber.format(j.harga.toInt())
+                    hargaPesan.text = "Rp. " + formatNumber.format(j.harga.toInt()) + ",00"
+                    Picasso.get().load(j.gambar).into(imgPesan)
                 }
             }
             override fun onCancelled(databaseError: DatabaseError) {}
@@ -65,9 +86,10 @@ class ActivityPesanan : AppCompatActivity() {
             override fun onDataChange(datasnapshot: DataSnapshot) {
                 for (snapshot4 in datasnapshot.children) {
                     val k = snapshot4.getValue(Pesanan::class.java)
-                    jumlahPesan.text = "Jumlah : " + k!!.jumlah
+                    invoicePesan.text = ": " + k!!.id_pesanan
+                    jumlahPesan.text = "Jumlah : " + k.jumlah
                     lokasiPesan.text = ": " + k.lokasi
-                    subtotalPesan.text = ": Rp. " + formatNumber.format(k.subtotal.toInt())
+                    subtotalPesan.text = ": Rp. " + formatNumber.format(k.subtotal.toInt()) + ",00"
                     if(k.tgl_pesan == "") {
                         laytglPesan.visibility = View.GONE
                         laydurasiPesan.visibility = View.GONE
@@ -89,9 +111,9 @@ class ActivityPesanan : AppCompatActivity() {
                 for (snapshot5 in datasnapshot.children) {
                     val l = snapshot5.getValue(Pembayaran::class.java)
                     metodePesan.text = ": " + l!!.metode
-                    adminPesan.text = ": Rp. " + formatNumber.format(l.admin.toInt())
-                    ongkirPesan.text = ": Rp. " + formatNumber.format(l.ongkir.toInt())
-                    totalPesan.text = ": Rp. " + formatNumber.format(l.total_bayar.toInt())
+                    adminPesan.text = ": Rp. " + formatNumber.format(l.admin.toInt()) + ",00"
+                    ongkirPesan.text = ": Rp. " + formatNumber.format(l.ongkir.toInt()) + ",00"
+                    totalPesan.text = ": Rp. " + formatNumber.format(l.total_bayar.toInt()) + ",00"
                     if(l.jaminan == "") {
                         layjaminanPesan.visibility = View.GONE
                     } else {

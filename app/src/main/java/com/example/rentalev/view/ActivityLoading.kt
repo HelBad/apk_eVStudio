@@ -32,6 +32,11 @@ class ActivityLoading : AppCompatActivity() {
                             startActivity(intent)
                             finish()
                         }
+                        SP.getString("level", "") == "Admin" -> {
+                            val intent = Intent(applicationContext, com.example.rentalev.view.admin.ActivityUtama::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
                         SP.getString("level", "") == "" -> {
                             val intent = Intent(applicationContext, ActivityLogin::class.java)
                             startActivity(intent)

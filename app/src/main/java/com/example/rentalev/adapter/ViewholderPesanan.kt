@@ -20,7 +20,7 @@ class ViewholderPesanan(itemView: View): RecyclerView.ViewHolder(itemView) {
     private var mView: View = itemView
     private var mClickListener: ClickListener? = null
     var pesanan = Pesanan()
-    var formatNumber: NumberFormat = DecimalFormat("#,###")
+    var formatNumber: NumberFormat = DecimalFormat("#,###.00")
 
     init {
         itemView.setOnClickListener { view -> mClickListener!!.onItemClick(view, adapterPosition) }
@@ -32,9 +32,9 @@ class ViewholderPesanan(itemView: View): RecyclerView.ViewHolder(itemView) {
 
     fun setDetails(pesanan: Pesanan) {
         this.pesanan = pesanan
-        val namaprodukPesanan = mView.findViewById(R.id.namaprodukPesanan) as TextView
-        val hargaprodukPesanan = mView.findViewById(R.id.hargaprodukPesanan) as TextView
-        val statusPesanan = mView.findViewById(R.id.statusPesanan) as TextView
+        val produkPesanan = mView.findViewById(R.id.produkPesanan) as TextView
+        val invoicePesanan = mView.findViewById(R.id.invoicePesanan) as TextView
+        val hargaPesanan = mView.findViewById(R.id.hargaPesanan) as TextView
         val imgPesanan = mView.findViewById(R.id.imgPesanan) as ImageView
 
         val queryProduk = FirebaseDatabase.getInstance().getReference("produk")
@@ -50,11 +50,11 @@ class ViewholderPesanan(itemView: View): RecyclerView.ViewHolder(itemView) {
                         override fun onDataChange(datasnapshot: DataSnapshot) {
                             for (snapshot2 in datasnapshot.children) {
                                 val i = snapshot2.getValue(Pembayaran::class.java)
+                                hargaPesanan.text = "Rp. " + formatNumber.format(i!!.total_bayar.toInt())
 
-                                statusPesanan.text = "Status : " + pesanan.status_pesanan
-                                namaprodukPesanan.text = h!!.nama_produk
+                                produkPesanan.text = h!!.nama_produk
                                 Picasso.get().load(h.gambar).into(imgPesanan)
-                                hargaprodukPesanan.text = "Rp. " + formatNumber.format(i!!.total_bayar.toInt()) + ",00"
+                                invoicePesanan.text = "Invoice : " + pesanan.id_pesanan
                             }
                         }
                         override fun onCancelled(databaseError: DatabaseError) {}

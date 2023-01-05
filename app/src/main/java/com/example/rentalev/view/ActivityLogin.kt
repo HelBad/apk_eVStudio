@@ -102,12 +102,10 @@ class ActivityLogin : AppCompatActivity() {
                                     finish()
                                 }
                             } else {
-                                btnLogin.isClickable = true
                                 Toast.makeText(this@ActivityLogin, "Password salah", Toast.LENGTH_SHORT).show()
                             }
                         }
                     } else {
-                        btnLogin.isClickable = true
                         Toast.makeText(this@ActivityLogin, "Email salah", Toast.LENGTH_SHORT).show()
                     }
                 }

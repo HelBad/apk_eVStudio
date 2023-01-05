@@ -8,7 +8,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.rentalev.R
 import com.example.rentalev.view.admin.fragment.FragmentBeranda
-import com.example.rentalev.view.admin.fragment.FragmentInbox
 import com.example.rentalev.view.admin.fragment.FragmentPesanan
 import com.example.rentalev.view.admin.fragment.FragmentProfil
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -25,10 +24,6 @@ class ActivityUtama : AppCompatActivity() {
             }
             R.id.pesanan -> {
                 replaceFragment(FragmentPesanan())
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.inbox -> {
-                replaceFragment(FragmentInbox())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.profil -> {

@@ -26,7 +26,7 @@
             android:layout_toRightOf="@+id/imgPesanan"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/namaprodukPesanan"
+                android:id="@+id/produkPesanan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -36,20 +36,21 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/hargaprodukPesanan"
+                android:id="@+id/invoicePesanan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="Harga"
-                android:textColor="@color/colorAccent"
+                android:text="Invoice"
+                android:textColor="@color/colorGrey"
                 android:textSize="15dp"
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/statusPesanan"
+                android:id="@+id/hargaPesanan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Status"
+                android:text="Harga"
+                android:textColor="@color/colorAccent"
                 android:textSize="15dp"
                 android:textStyle="bold" />
         </LinearLayout>
