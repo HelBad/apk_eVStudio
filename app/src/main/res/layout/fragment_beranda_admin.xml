@@ -14,4 +14,10 @@
         android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         app:title="Beranda" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerBeranda"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp" />
 </LinearLayout>

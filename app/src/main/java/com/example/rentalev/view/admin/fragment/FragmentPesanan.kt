@@ -39,7 +39,7 @@ class FragmentPesanan : Fragment() {
     }
 
     private fun pilihStatus() {
-        val pilihStatus = arrayOf("Menunggu", "Disetujui", "Ditolak")
+        val pilihStatus = arrayOf("Diproses", "Dikirim", "Selesai", "Dibatalkan")
         spinnerPesanan.adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, pilihStatus)
         spinnerPesanan.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -51,14 +51,17 @@ class FragmentPesanan : Fragment() {
     }
 
     private fun loadData() {
-        if(statusPesanan.text.toString() == "Menunggu") {
+        if(statusPesanan.text.toString() == "Diproses") {
             val query = ref.orderByChild("status_pesanan").equalTo("pending")
             listData(query)
-        } else if(statusPesanan.text.toString() == "Disetujui") {
-            val query = ref.orderByChild("status_pesanan").equalTo("approve")
+        } else if(statusPesanan.text.toString() == "Dikirim") {
+            val query = ref.orderByChild("status_pesanan").equalTo("delivery")
             listData(query)
-        } else if(statusPesanan.text.toString() == "Ditolak") {
-            val query = ref.orderByChild("status_pesanan").equalTo("reject")
+        } else if(statusPesanan.text.toString() == "Selesai") {
+            val query = ref.orderByChild("status_pesanan").equalTo("success")
+            listData(query)
+        } else if(statusPesanan.text.toString() == "Dibatalkan") {
+            val query = ref.orderByChild("status_pesanan").equalTo("cancel")
             listData(query)
         }
     }
