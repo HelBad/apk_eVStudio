@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".view.admin.ActivityPesanan">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarPesan"
@@ -15,9 +14,64 @@
         android:minHeight="?attr/actionBarSize"
         app:title="Detail Pesanan" />
 
+    <LinearLayout
+        android:id="@+id/layPesan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        android:elevation="5dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/btnBatal"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/dec_button"
+            android:backgroundTint="@color/colorAccent"
+            android:gravity="center"
+            android:text="BATALKAN"
+            android:textColor="@android:color/white"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/btnKirim"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/dec_button"
+            android:backgroundTint="@color/colorPrimary"
+            android:gravity="center"
+            android:text="KIRIM BARANG"
+            android:textColor="@android:color/white"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/btnSelesai"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/dec_button"
+            android:backgroundTint="@color/colorPrimary"
+            android:gravity="center"
+            android:text="PESANAN SELESAI"
+            android:textColor="@android:color/white"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:visibility="gone"/>
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/layPesan"
+        android:layout_below="@+id/toolbarPesan"
         android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
@@ -434,4 +488,4 @@
                 android:background="#8F8B8B" />
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+</RelativeLayout>

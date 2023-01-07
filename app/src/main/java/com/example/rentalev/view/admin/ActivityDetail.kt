@@ -43,6 +43,7 @@ class ActivityDetail : AppCompatActivity() {
                 .setPositiveButton("YA", object: DialogInterface.OnClickListener {
                     override fun onClick(dialog: DialogInterface, id:Int) {
                         ref.child(intent.getStringExtra("id_produk").toString()).removeValue()
+                        finish()
                     }
                 })
                 .setNegativeButton("TIDAK", object: DialogInterface.OnClickListener {

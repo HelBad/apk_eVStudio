@@ -285,8 +285,8 @@ class ActivityCheckout : AppCompatActivity() {
             val idInbox  = ref.push().key.toString()
             val addInbox = Inbox(idInbox, SP.getString("id_pengguna", "").toString(),
                 SP.getString("id_identitas", "").toString(), idPesanan,
-                "Pesanan Diproses", "Pesanan anda telah dikirim. Harap tunggu Admin " +
-                        "merespon pesanan anda. Terimakasih.", "pesanan")
+                "Pesanan Diproses", "Pesananmu dengan invoice : " + idPesanan +
+                        " telah dikirim. Harap tunggu Admin merespon pesanan anda. Terimakasih.", "pesanan")
             ref.child(idInbox).setValue(addInbox)
 
             val intent = Intent(this@ActivityCheckout, ActivityUtama::class.java)

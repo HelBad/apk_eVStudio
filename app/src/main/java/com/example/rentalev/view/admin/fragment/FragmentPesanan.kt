@@ -84,6 +84,7 @@ class FragmentPesanan : Fragment() {
                         intent.putExtra("id_pesanan", viewHolder.pesanan.id_pesanan)
                         intent.putExtra("id_pengguna", viewHolder.pesanan.id_pengguna)
                         intent.putExtra("id_produk", viewHolder.pesanan.id_produk)
+                        intent.putExtra("status", viewHolder.pesanan.status_pesanan)
                         startActivity(intent)
                     }
                     override fun onItemLongClick(view:View, position:Int) {}
