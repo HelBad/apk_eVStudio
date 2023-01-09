@@ -22,10 +22,13 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.example.rentalev.R
+import com.example.rentalev.model.Identitas
 import com.example.rentalev.model.Inbox
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_profil.*
+import kotlinx.android.synthetic.main.fragment_profil.*
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -83,25 +86,7 @@ class ActivityProfil : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        if(SP.getString("status", "") == "approve") {
-            namaProfil.isEnabled = false
-            namaProfil.setTextColor(ContextCompat.getColor(applicationContext, R.color.colorGrey))
-            cardNikProfil.visibility = View.GONE
-            cardTempatProfil.visibility = View.GONE
-            cardTanggalProfil.visibility = View.GONE
-            cardGenderProfil.visibility = View.GONE
-            cardAlamatProfil.visibility = View.GONE
-            cardFotoProfil.visibility = View.GONE
-        } else if(SP.getString("status", "") == "pending") {
-            namaProfil.isEnabled = false
-            namaProfil.setTextColor(ContextCompat.getColor(applicationContext, R.color.colorGrey))
-            cardNikProfil.visibility = View.GONE
-            cardTempatProfil.visibility = View.GONE
-            cardTanggalProfil.visibility = View.GONE
-            cardGenderProfil.visibility = View.GONE
-            cardAlamatProfil.visibility = View.GONE
-            cardFotoProfil.visibility = View.GONE
-        } else {
+        if(SP.getString("status", "") == "empty") {
             namaProfil.isEnabled = true
             namaProfil.setTextColor(ContextCompat.getColor(applicationContext, R.color.colorBlack))
             cardNikProfil.visibility = View.VISIBLE
@@ -110,19 +95,39 @@ class ActivityProfil : AppCompatActivity() {
             cardGenderProfil.visibility = View.VISIBLE
             cardAlamatProfil.visibility = View.VISIBLE
             cardFotoProfil.visibility = View.VISIBLE
+        } else {
+            namaProfil.isEnabled = false
+            namaProfil.setTextColor(ContextCompat.getColor(applicationContext, R.color.colorGrey))
+            cardNikProfil.visibility = View.GONE
+            cardTempatProfil.visibility = View.GONE
+            cardTanggalProfil.visibility = View.GONE
+            cardGenderProfil.visibility = View.GONE
+            cardAlamatProfil.visibility = View.GONE
+            cardFotoProfil.visibility = View.GONE
         }
     }
 
     private fun dataProfil() {
-        namaProfil.text = Editable.Factory.getInstance().newEditable(SP.getString("nama", ""))
-        emailProfil.text = Editable.Factory.getInstance().newEditable(SP.getString("email", ""))
-        telpProfil.text = Editable.Factory.getInstance().newEditable(SP.getString("telp", ""))
-        nikProfil.text = Editable.Factory.getInstance().newEditable(SP.getString("nik", ""))
-        tempatProfil.text = Editable.Factory.getInstance().newEditable(SP.getString("tempat", ""))
-        tanggalProfil.text = Editable.Factory.getInstance().newEditable(SP.getString("tanggal", ""))
-        genderProfil.text = Editable.Factory.getInstance().newEditable(SP.getString("gender", ""))
-        alamatProfil.text = Editable.Factory.getInstance().newEditable(SP.getString("alamat", ""))
-        fotoProfil.text = Editable.Factory.getInstance().newEditable(SP.getString("foto", ""))
+        FirebaseDatabase.getInstance().getReference("identitas")
+            .orderByChild("id_pengguna").equalTo(SP.getString("id_pengguna", "").toString())
+            .addListenerForSingleValueEvent(object: ValueEventListener {
+                override fun onDataChange(datasnapshot: DataSnapshot) {
+                    for (snapshot2 in datasnapshot.children) {
+                        val allocation = snapshot2.getValue(Identitas::class.java)
+                        nikProfil.text = Editable.Factory.getInstance().newEditable(allocation!!.nik)
+                        tempatProfil.text = Editable.Factory.getInstance().newEditable(allocation.tempat)
+                        tanggalProfil.text = Editable.Factory.getInstance().newEditable(allocation.tanggal)
+                        genderProfil.text = Editable.Factory.getInstance().newEditable(allocation.gender)
+                        alamatProfil.text = Editable.Factory.getInstance().newEditable(allocation.alamat)
+                        fotoProfil.text = Editable.Factory.getInstance().newEditable(allocation.foto)
+
+                        namaProfil.text = Editable.Factory.getInstance().newEditable(SP.getString("nama", ""))
+                        emailProfil.text = Editable.Factory.getInstance().newEditable(SP.getString("email", ""))
+                        telpProfil.text = Editable.Factory.getInstance().newEditable(SP.getString("telp", ""))
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {}
+            })
     }
 
     private fun setTanggal() {

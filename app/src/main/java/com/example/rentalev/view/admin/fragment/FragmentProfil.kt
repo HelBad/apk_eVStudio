@@ -17,6 +17,7 @@ import com.example.rentalev.R
 import com.example.rentalev.adapter.ViewholderProfil
 import com.example.rentalev.model.Identitas
 import com.example.rentalev.view.ActivityLogin
+import com.example.rentalev.view.admin.ActivityProfil
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -117,7 +118,18 @@ class FragmentProfil : Fragment() {
             override fun onCreateViewHolder(parent:ViewGroup, viewType:Int): ViewholderProfil {
                 val viewHolder = super.onCreateViewHolder(parent, viewType)
                 viewHolder.setOnClickListener(object: ViewholderProfil.ClickListener {
-                    override fun onItemClick(view:View, position:Int) {}
+                    override fun onItemClick(view:View, position:Int) {
+                        val intent = Intent(view.context, ActivityProfil::class.java)
+                        intent.putExtra("id_pengguna", viewHolder.identitas.id_pengguna)
+                        if(statusAkun.text.toString() == "Menunggu") {
+                            intent.putExtra("status", "pending")
+                        } else if(statusAkun.text.toString() == "Disetujui") {
+                            intent.putExtra("status", "approve")
+                        } else if(statusAkun.text.toString() == "Ditolak") {
+                            intent.putExtra("status", "reject")
+                        }
+                        startActivity(intent)
+                    }
                     override fun onItemLongClick(view:View, position:Int) {}
                 })
                 return viewHolder

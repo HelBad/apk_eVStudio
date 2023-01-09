@@ -12,9 +12,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.rentalev.view.ActivityLogin
 import com.example.rentalev.R
+import com.example.rentalev.model.Identitas
 import com.example.rentalev.view.pengguna.ActivityProfil
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_profil_admin.*
 import kotlinx.android.synthetic.main.fragment_profil.*
 
 class FragmentProfil : Fragment() {
@@ -44,26 +46,37 @@ class FragmentProfil : Fragment() {
     }
 
     private fun dataAkun() {
-        namaAkun.text = SP.getString("nama", "")
-        emailAkun.text = SP.getString("email", "")
-        telpAkun.text = SP.getString("telp", "")
-        if(SP.getString("status", "") == "empty") {
-            nikAkun.text = "-"
-            ttlAkun.text = "-"
-            genderAkun.text = "-"
-            alamatAkun.text = "-"
-        } else if(SP.getString("status", "") == "pending") {
-            nikAkun.text = "-"
-            ttlAkun.text = "-"
-            genderAkun.text = "-"
-            alamatAkun.text = "-"
-        } else {
-            nikAkun.text = SP.getString("nik", "")
-            ttlAkun.text = SP.getString("tempat", "") + ", " + SP.getString("tanggal", "")
-            genderAkun.text = SP.getString("gender", "")
-            alamatAkun.text = SP.getString("alamat", "")
-            Picasso.get().load(SP.getString("foto", "")).into(fotoAkun)
-        }
+        FirebaseDatabase.getInstance().getReference("identitas")
+            .orderByChild("id_pengguna").equalTo(SP.getString("id_pengguna", "").toString())
+            .addListenerForSingleValueEvent(object: ValueEventListener {
+                override fun onDataChange(datasnapshot: DataSnapshot) {
+                    for (snapshot2 in datasnapshot.children) {
+                        val allocation = snapshot2.getValue(Identitas::class.java)
+                        if (allocation!!.status == "empty") {
+                            nikAkun.text = "-"
+                            ttlAkun.text = "-"
+                            genderAkun.text = "-"
+                            alamatAkun.text = "-"
+                        } else if (allocation.status == "pending") {
+                            nikAkun.text = "-"
+                            ttlAkun.text = "-"
+                            genderAkun.text = "-"
+                            alamatAkun.text = "-"
+                        } else {
+                            nikAkun.text = allocation.nik
+                            ttlAkun.text = allocation.tempat + ", " + allocation.tanggal
+                            genderAkun.text = allocation.gender
+                            alamatAkun.text = allocation.alamat
+                            Picasso.get().load(allocation.foto).into(fotoAkun)
+                        }
+
+                        namaAkun.text = SP.getString("nama", "")
+                        emailAkun.text = SP.getString("email", "")
+                        telpAkun.text = SP.getString("telp", "")
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {}
+            })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
